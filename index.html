@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alek — English Coach for Kids & Teens</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .cv-card {
+      background: white;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      overflow: visible; /* Allows floating image */
+      padding-top: 80px; /* Makes space for floating image */
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+    }
+
+    .lang-switcher {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #ddd;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: white;
+      transform: scale(1.05);
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: -75px auto 20px; /* Floats image up */
+      border: 5px solid white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+
+    .title {
+      font-size: 18px;
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .bio {
+      padding: 0 30px 25px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .skills, .testimonials, .faq-section, .contact {
+      padding: 25px 30px;
+      margin: 0;
+    }
+
+    .skills {
+      background: #f8f9fa;
+    }
+
+    .testimonials {
+      background: #f0f7ff;
+    }
+
+    .faq-section {
+      background: #fff8e1;
+    }
+
+    .section-title {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid #bbdefb;
+    }
+
+    .testimonial-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .testimonial-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 1px solid #e0e0e0;
+      transition: transform 0.2s;
+    }
+
+    .testimonial-img:hover {
+      transform: scale(1.02);
+    }
+
+    .add-review-cta {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed #bdc3c7;
+    }
+
+    .add-review-cta p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      margin: 10px 0;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+
+    .small {
+      font-size: 12px;
+      color: #95a5a6;
+    }
+
+    /* FAQ Accordion Styles */
+    .faq-item {
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: #fff3e0;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .faq-question-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 15px;
+      background: #ffecb3;
+      border: none;
+      text-align: left;
+      font-weight: 600;
+      color: #e65100;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .faq-question-btn:hover {
+      background: #ffe082;
+    }
+
+    .faq-question-btn::after {
+      content: '+';
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question-btn::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+
+    .faq-answer-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: white;
+      padding: 0 15px;
+    }
+
+    .faq-item.active .faq-answer-container {
+      max-height: 500px;
+    }
+
+    .faq-answer {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 15px 0;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-links a {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .contact-links a:hover {
+      color: #0d47a1;
+      text-decoration: underline;
+    }
+
+    .socials {
+      padding: 20px 0;
+      background: #2c3e50;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 22px;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+
+    footer {
+      padding: 15px;
+      background: #1a252f;
+      color: #bdc3c7;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cv-card">
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+      <button onclick="switchLanguage('en')" class="lang-btn">🇺🇸</button>
+      <button onclick="switchLanguage('ru')" class="lang-btn">🇷🇺</button>
+    </div>
+
+    <!-- Profile Photo -->
+    <img src="https://i.imgur.com/dpXAjFG.jpg" alt="Alek - English Coach" class="profile-pic">
+
+    <!-- Name & Title -->
+    <h1 class="name" data-en="Alek" data-ru="Алек"></h1>
+    <h2 class="title" data-en="Your Friendly English Coach" data-ru="Ваш дружелюбный преподаватель английского"></h2>
+
+    <!-- Bio -->
+    <p class="bio" 
+       data-en="Hi! I’m Alek. I help kids and teens learn English through games, stories, and real conversations — no stress, just progress."
+       data-ru="Привет! Я Алек. Я помогаю детям и подросткам учить английский через игры, истории и живое общение — без стресса, только прогресс.">
+    </p>
+
+    <!-- Services -->
+    <div class="skills">
+      <h3 class="section-title" data-en="What I Offer" data-ru="Что я предлагаю"></h3>
+      <div class="skill-tags" id="service-tags">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials">
+      <h3 class="section-title" data-en="What My Students Say" data-ru="Отзывы учеников и родителей"></h3>
+      <div class="testimonial-gallery" id="testimonial-gallery">
+        <!-- JS will populate with img elements -->
+      </div>
+      <div class="add-review-cta">
+        <p data-en="📸 Send a screenshot of your WhatsApp message to:" data-ru="📸 Отправьте скриншот вашего сообщения в WhatsApp:"></p>
+        <a href="https://wa.me/79998965379" class="whatsapp-btn" target="_blank">
+          📱 +7 (999) 896-53-79
+        </a>
+        <p class="small" data-en="(I’ll add your screenshot here with your permission!)" data-ru="(Я добавлю ваш скриншот сюда с вашего разрешения!)"></p>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="faq-section">
+      <h3 class="section-title" data-en="Frequently Asked Questions" data-ru="Часто задаваемые вопросы"></h3>
+      <div class="faq-accordion" id="faq-accordion">
+        <!-- JS will populate with interactive items -->
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact">
+      <h3 class="section-title" data-en="Get in Touch" data-ru="Свяжитесь со мной"></h3>
+      <div class="contact-links">
+        <a href="mailto:lessons@angliskomu.ru" class="contact-item" data-en="📧 lessons@angliskomu.ru" data-ru="📧 lessons@angliskomu.ru"></a>
+        <a href="https://wa.me/79998965379" class="contact-item" data-en="💬 WhatsApp: +7 (999) 896-53-79" data-ru="💬 WhatsApp: +7 (999) 896-53-79"></a>
+        <!-- Optional: Add Calendly link later -->
+        <!-- <a href="https://calendly.com/yourname" target="_blank" class="contact-item" data-en="📅 Book a Free Trial" data-ru="📅 Записаться на пробный урок"></a> -->
+      </div>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="socials">
+      <div class="social-icons">
+        <!-- Optional: Add your real links later -->
+        <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">📷</a>
+        <a href="https://t.me/yourchannel" target="_blank" aria-label="Telegram">✈️</a>
+        <a href="https://youtube.com/@yourchannel" target="_blank" aria-label="YouTube">▶️</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <span data-en="© 2025 Alek. Made with ❤️ for my students and their families." data-ru="© 2025 Алек. Сделано с ❤️ для моих учеников и их семей."></span>
+    </footer>
+  </div>
+
+  <!-- ✅ JAVASCRIPT SECTION — COPY THIS ENTIRE <script> BLOCK -->
+  <script>
+    // =============== SERVICES ===============
+    const services = {
+      en: ["Kids 6-10", "Teens 11-15", "Beginner Adults", "School Exam Prep", "Speaking Confidence"],
+      ru: ["Дети 6-10 лет", "Подростки 11-15 лет", "Взрослые новички", "Подготовка к школьным экзаменам", "Разговорный английский"]
+    };
+
+    // =============== TESTIMONIAL IMAGES ===============
+    // REPLACE WITH YOUR OWN IMGUR LINKS LATER
+    const testimonialImages = [
+      "https://via.placeholder.com/400x200?text=WhatsApp+Review+1",
+      "https://via.placeholder.com/400x200?text=WhatsApp+Review+2",
+      "https://via.placeholder.com/400x200?text=WhatsApp+Review+3"
+    ];
+
+    // =============== FAQ DATA ===============
+    const faqs = {
+      en: [
+        {
+          question: "How do lessons work?",
+          answer: "All lessons are 1-on-1 via Zoom or WhatsApp video. We focus on conversation, games, and real-life topics — no boring textbooks!"
+        },
+        {
+          question: "How much do lessons cost?",
+          answer: "Prices start at 1,500 RUB per 45-minute lesson. First trial lesson is FREE!"
+        },
+        {
+          question: "What ages do you teach?",
+          answer: "I specialize in kids 6-10 and teens 11-15. I also work with beginner adults."
+        },
+        {
+          question: "Do you give homework?",
+          answer: "Only fun, optional homework — like watching a cartoon or playing a vocabulary game. No stress!"
+        },
+        {
+          question: "How do I book a trial lesson?",
+          answer: "Message me on WhatsApp (+7 999 896-53-79) or email me at lessons@angliskomu.ru. I’ll reply within 24 hours!"
+        }
+      ],
+      ru: [
+        {
+          question: "Как проходят занятия?",
+          answer: "Все занятия индивидуальные через Zoom или WhatsApp видео. Мы играем, общаемся на интересные темы — никаких скучных учебников!"
+        },
+        {
+          question: "Сколько стоят занятия?",
+          answer: "Цены начинаются от 1500 руб. за 45 минут. Первое пробное занятие — БЕСПЛАТНО!"
+        },
+        {
+          question: "Какой возраст учеников?",
+          answer: "Я специализируюсь на детях 6-10 лет и подростках 11-15 лет. Также работаю со взрослыми новичками."
+        },
+        {
+          question: "Вы задаете домашнее задание?",
+          answer: "Только веселое и необязательное — например, посмотреть мультфильм или поиграть в игру. Без стресса!"
+        },
+        {
+          question: "Как записаться на пробный урок?",
+          answer: "Напишите мне в WhatsApp (+7 999 896-53-79) или на почту lessons@angliskomu.ru. Ответлю в течение 24 часов!"
+        }
+      ]
+    };
+
+    // =============== LANGUAGE FUNCTIONS ===============
+    function detectBrowserLanguage() {
+      const lang = navigator.language || navigator.userLanguage;
+      return lang.startsWith('ru') ? 'ru' : 'en';
+    }
+
+    function getPreferredLanguage() {
+      const savedLang = localStorage.getItem('cv-lang');
+      return savedLang || detectBrowserLanguage();
+    }
+
+    // =============== FAQ ACCORDION CREATOR ===============
+    function createFAQItem(question, answer) {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+
+      const button = document.createElement('button');
+      button.className = 'faq-question-btn';
+      button.textContent = question;
+
+      const answerContainer = document.createElement('div');
+      answerContainer.className = 'faq-answer-container';
+
+      const answerText = document.createElement('p');
+      answerText.className = 'faq-answer';
+      answerText.textContent = answer;
+
+      answerContainer.appendChild(answerText);
+      item.appendChild(button);
+      item.appendChild(answerContainer);
+
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+
+      return item;
+    }
+
+    // =============== MAIN LANGUAGE SWITCHER ===============
+    function switchLanguage(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+
+      // Update all translatable elements
+      document.querySelectorAll('[data-en], [data-ru]').forEach(el => {
+        const key = el.getAttribute('data-' + lang);
+        if (key) el.textContent = key;
+      });
+
+      // Update services
+      const serviceContainer = document.getElementById('service-tags');
+      serviceContainer.innerHTML = '';
+      services[lang].forEach(service => {
+        const tag = document.createElement('span');
+        tag.className = 'skill-tag';
+        tag.textContent = service;
+        serviceContainer.appendChild(tag);
+      });
+
+      // Update testimonials
+      const galleryContainer = document.getElementById('testimonial-gallery');
+      galleryContainer.innerHTML = '';
+      testimonialImages.forEach(imgUrl => {
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.alt = "Student WhatsApp Review";
+        img.className = 'testimonial-img';
+        img.loading = "lazy";
+        galleryContainer.appendChild(img);
+      });
+
+      // Update FAQ
+      const faqContainer = document.getElementById('faq-accordion');
+      faqContainer.innerHTML = '';
+      faqs[lang].forEach(item => {
+        const faqItem = createFAQItem(item.question, item.answer);
+        faqContainer.appendChild(faqItem);
+      });
+
+      localStorage.setItem('cv-lang', lang);
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      switchLanguage(getPreferredLanguage());
+    });
+  </script>
+
+</body>
+</html>
