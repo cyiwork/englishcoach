@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alek — English Coach for Kids & Professionals</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .cv-card {
+      background: white;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      overflow: visible;
+      padding-top: 80px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+    }
+
+    .lang-switcher {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #ddd;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: white;
+      transform: scale(1.05);
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: -75px auto 20px;
+      border: 5px solid white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+
+    .title {
+      font-size: 18px;
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .bio {
+      padding: 0 30px 25px;
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .skills, .testimonials, .faq-section, .about-section, .contact {
+      padding: 25px 30px;
+      margin: 0;
+    }
+
+    .skills {
+      background: #f8f9fa;
+    }
+
+    .testimonials {
+      background: #f0f7ff;
+    }
+
+    .faq-section, .about-section {
+      background: #fff8e1;
+    }
+
+    .section-title {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid #bbdefb;
+    }
+
+    /* TESTIMONIAL ACCORDION */
+    .testimonial-item {
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: #fff3e0;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-question-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 15px;
+      background: #ffecb3;
+      border: none;
+      text-align: left;
+      font-weight: 600;
+      color: #e65100;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .testimonial-question-btn:hover {
+      background: #ffe082;
+    }
+
+    .testimonial-question-btn::after {
+      content: '+';
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .testimonial-item.active .testimonial-question-btn::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+
+    .testimonial-answer-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: white;
+      padding: 0 15px;
+    }
+
+    .testimonial-item.active .testimonial-answer-container {
+      max-height: 500px;
+    }
+
+    .testimonial-img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 1px solid #e0e0e0;
+      transition: transform 0.2s;
+      margin: 10px auto;
+      display: block;
+    }
+
+    .testimonial-img:hover {
+      transform: scale(1.02);
+    }
+
+    .add-review-cta {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed #bdc3c7;
+    }
+
+    .add-review-cta p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      margin: 10px 0;
+      transition: background 0.3s;
+      box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-btn:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+
+    .small {
+      font-size: 12px;
+      color: #95a5a6;
+    }
+
+    /* FAQ & About Accordion */
+    .faq-item, .about-item {
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: #fff3e0;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .faq-question-btn, .about-question-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 15px;
+      background: #ffecb3;
+      border: none;
+      text-align: left;
+      font-weight: 600;
+      color: #e65100;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .faq-question-btn:hover, .about-question-btn:hover {
+      background: #ffe082;
+    }
+
+    .faq-question-btn::after, .about-question-btn::after {
+      content: '+';
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question-btn::after, .about-item.active .about-question-btn::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+
+    .faq-answer-container, .about-answer-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: white;
+      padding: 0 15px;
+    }
+
+    .faq-item.active .faq-answer-container, .about-item.active .about-answer-container {
+      max-height: 500px;
+    }
+
+    .faq-answer, .about-answer {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 15px 0;
+    }
+
+    .socials {
+      padding: 20px 0;
+      background: #2c3e50;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 22px;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+
+    footer {
+      padding: 15px;
+      background: #1a252f;
+      color: #bdc3c7;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cv-card">
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+      <button onclick="switchLanguage('en')" class="lang-btn">🇺🇸</button>
+      <button onclick="switchLanguage('ru')" class="lang-btn">🇷🇺</button>
+    </div>
+
+    <!-- Profile Photo -->
+    <img src="https://github.com/cyiwork/englishcoach/raw/0cc5a63e61ed178c3b3e61244cf847e3035475e6/main-p.jpg" alt="Alek - English Coach" class="profile-pic">
+
+    <!-- Name & Title -->
+    <h1 class="name" data-en="Alek" data-ru="Алек"></h1>
+    <h2 class="title" data-en="Your Friendly English Coach" data-ru="Ваш преподаватель английского"></h2>
+
+    <!-- Bio -->
+    <p class="bio" 
+       data-en="Hi! I help kids, teens, and professionals learn English through fun, games, and real conversations — no stress, just progress."
+       data-ru="Привет! Я помогаю детям, подросткам и профессионалам учить английский через игры, истории и живое общение — без стресса, только прогресс.">
+    </p>
+
+    <!-- Services -->
+    <div class="skills">
+      <h3 class="section-title" data-en="What I Offer" data-ru="Что я предлагаю"></h3>
+      <div class="skill-tags" id="service-tags">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- About Me Accordion -->
+    <div class="about-section">
+      <h3 class="section-title" data-en="About Me" data-ru="Обо мне"></h3>
+      <div class="about-accordion" id="about-accordion">
+        <!-- JS will populate -->
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials">
+      <h3 class="section-title" data-en="What My Students Say" data-ru="Отзывы учеников и родителей"></h3>
+      <div class="testimonial-accordion" id="testimonial-accordion">
+        <!-- JS will populate with interactive items -->
+      </div>
+      <div class="add-review-cta">
+        <p data-en="📅 Ready to start? Book your first lesson now!" data-ru="📅 Готовы начать? Забронируйте свой первый урок сейчас!"></p>
+        <a href="https://wa.me/79998965379" class="whatsapp-btn" target="_blank">
+          💬 Message Me on WhatsApp
+        </a>
+        <p class="small" data-en="“Learning English is like unlocking a superpower — it’s fun, powerful, and opens new worlds!”" data-ru="“Изучать английский — как получить суперсилу: весело, мощно и открывает новые миры!”"></p>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="faq-section">
+      <h3 class="section-title" data-en="Frequently Asked Questions" data-ru="Часто задаваемые вопросы"></h3>
+      <div class="faq-accordion" id="faq-accordion">
+        <!-- JS will populate -->
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact">
+      <h3 class="section-title" data-en="Get in Touch" data-ru="Свяжитесь со мной"></h3>
+      <a href="https://wa.me/79998965379" class="whatsapp-btn" target="_blank">
+        💬 Message Me on WhatsApp
+      </a>
+      <p class="small" data-en="I'll reply within a day!" data-ru="Я отвечу в течение дня!"></p>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="socials">
+      <div class="social-icons">
+        <a href="https://instagram.com/kypc_outdoors" target="_blank" aria-label="Instagram">📷</a>
+        <a href="https://t.me/snapshotstories" target="_blank" aria-label="Telegram">✈️</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <span data-en="© 2025 Alek. Made with ❤️ for my students and their families." data-ru="© 2025 Алек. Сделано с ❤️ для моих учеников и их семей."></span>
+    </footer>
+  </div>
+
+  <script>
+    // SERVICES
+    const services = {
+      en: ["Business English", "DSAT", "Speaking Confidence", "Kids 6-12", "Teens 13-19", "Adults", "IELTS"],
+      ru: ["Бизнес-английский", "DSAT", "Разговорный английский", "Дети 6-12 лет", "Подростки 13-19 лет", "Взрослые", "IELTS"]
+    };
+
+    // TESTIMONIALS
+    const testimonialImages = [
+      "https://i.imgur.com/AbC123d.jpg",
+      "https://i.imgur.com/XyZ789e.jpg",
+      "https://i.imgur.com/LmN456f.jpg"
+    ];
+
+    function createTestimonialItem(imgUrl) {
+      const item = document.createElement('div');
+      item.className = 'testimonial-item';
+
+      const button = document.createElement('button');
+      button.className = 'testimonial-question-btn';
+      button.textContent = "Student Review";
+
+      const answerContainer = document.createElement('div');
+      answerContainer.className = 'testimonial-answer-container';
+
+      const img = document.createElement('img');
+      img.src = imgUrl; // ✅ FIXED: was 'imageUrl'
+      img.alt = "Student WhatsApp Review";
+      img.className = 'testimonial-img';
+      img.loading = "lazy";
+
+      answerContainer.appendChild(img);
+      item.appendChild(button);
+      item.appendChild(answerContainer);
+
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+
+      return item;
+    }
+
+    // ABOUT ME
+    const aboutMe = {
+      en: {
+        question: "Who is Alek?",
+        answer: "I help students of all ages — from kids to CEOs — speak English with confidence. I mix fun, games, and real-life practice so learning never feels like work!"
+      },
+      ru: {
+        question: "Кто такой Алек?",
+        answer: "Я помогаю ученикам всех возрастов — от детей до руководителей — говорить по-английски уверенно. Я смешиваю игры, веселье и практику, чтобы обучение никогда не казалось работой!"
+      }
+    };
+
+    // FAQ
+    const faqs = {
+      en: [
+        {
+          question: "How do lessons work?",
+          answer: "All lessons are 1-on-1 via Zoom or Google Meet. We focus on conversation, games, and real-life topics!"
+        },
+        {
+          question: "How much do lessons cost?",
+          answer: "Prices vary by program (DSAT, Business English, Conversational, etc.). Message me on WhatsApp for a personalized quote!"
+        },
+        {
+          question: "What ages do you teach?",
+          answer: "I teach everyone! Kids 6-12, Teens 13-19, Adults, and Professionals. Everyone learns differently — I customize lessons just for you."
+        },
+        {
+          question: "Do you give homework?",
+          answer: "Only fun, optional homework — like watching a cartoon or playing a vocabulary game. No stress!"
+        },
+        {
+          question: "How do I book a trial lesson?",
+          answer: "Just message me on WhatsApp! I’ll reply within a day."
+        }
+      ],
+      ru: [
+        {
+          question: "Как проходят занятия?",
+          answer: "Все занятия индивидуальные через Zoom или Встреча в Google. Мы фокусируемся на разговорах, играх и реальных темах!"
+        },
+        {
+          question: "Сколько стоят занятия?",
+          answer: "Цены зависят от программы (DSAT, бизнес-английский, разговорный и т.д.). Напишите мне в WhatsApp для персонального предложения!"
+        },
+        {
+          question: "Какой возраст учеников?",
+          answer: "Я преподаю всем! Дети 6-12 лет, подростки 13-19 лет, взрослые и профессионалы. Каждый учится по-своему — я создаю уроки специально для вас."
+        },
+        {
+          question: "Вы задаете домашнее задание?",
+          answer: "Только веселое и необязательное — например, посмотреть мультфильм или поиграть в игру. Без стресса!"
+        },
+        {
+          question: "Как записаться на пробный урок?",
+          answer: "Просто напишите мне в WhatsApp! Я отвечу в течение дня."
+        }
+      ]
+    };
+
+    // LANGUAGE FUNCTIONS
+    function detectBrowserLanguage() {
+      const lang = navigator.language || navigator.userLanguage;
+      return lang.startsWith('ru') ? 'ru' : 'en';
+    }
+
+    function getPreferredLanguage() {
+      const savedLang = localStorage.getItem('cv-lang');
+      return savedLang || detectBrowserLanguage();
+    }
+
+    // ACCORDION CREATOR
+    function createFAQItem(question, answer) {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+
+      const button = document.createElement('button');
+      button.className = 'faq-question-btn';
+      button.textContent = question;
+
+      const answerContainer = document.createElement('div');
+      answerContainer.className = 'faq-answer-container';
+
+      const answerText = document.createElement('p');
+      answerText.className = 'faq-answer';
+      answerText.textContent = answer;
+
+      answerContainer.appendChild(answerText);
+      item.appendChild(button);
+      item.appendChild(answerContainer);
+
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+
+      return item;
+    }
+
+    // ABOUT ME CREATOR
+    function createAboutItem(question, answer) {
+      const item = document.createElement('div');
+      item.className = 'about-item';
+
+      const button = document.createElement('button');
+      button.className = 'about-question-btn';
+      button.textContent = question;
+
+      const answerContainer = document.createElement('div');
+      answerContainer.className = 'about-answer-container';
+
+      const answerText = document.createElement('p');
+      answerText.className = 'about-answer';
+      answerText.textContent = answer;
+
+      answerContainer.appendChild(answerText);
+      item.appendChild(button);
+      item.appendChild(answerContainer);
+
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+
+      return item;
+    }
+
+    // MAIN LANGUAGE SWITCHER
+    function switchLanguage(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+
+      // Update text
+      document.querySelectorAll('[data-en], [data-ru]').forEach(el => {
+        const key = el.getAttribute('data-' + lang);
+        if (key) el.textContent = key;
+      });
+
+      // Update services
+      const serviceContainer = document.getElementById('service-tags');
+      serviceContainer.innerHTML = '';
+      services[lang].forEach(service => {
+        const tag = document.createElement('span');
+        tag.className = 'skill-tag';
+        tag.textContent = service;
+        serviceContainer.appendChild(tag);
+      });
+
+      // Update testimonials
+      const testimonialContainer = document.getElementById('testimonial-accordion');
+      testimonialContainer.innerHTML = '';
+      testimonialImages.forEach(imgUrl => {
+        const testimonialItem = createTestimonialItem(imgUrl);
+        testimonialContainer.appendChild(testimonialItem);
+      });
+
+      // Update FAQ
+      const faqContainer = document.getElementById('faq-accordion');
+      faqContainer.innerHTML = '';
+      faqs[lang].forEach(item => {
+        const faqItem = createFAQItem(item.question, item.answer);
+        faqContainer.appendChild(faqItem);
+      });
+
+      // Update About Me
+      const aboutContainer = document.getElementById('about-accordion');
+      aboutContainer.innerHTML = '';
+      const aboutItem = createAboutItem(aboutMe[lang].question
