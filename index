@@ -611,4 +611,17 @@
       // Update About Me
       const aboutContainer = document.getElementById('about-accordion');
       aboutContainer.innerHTML = '';
-      const aboutItem = createAboutItem(aboutMe[lang].question
+      const aboutItem = createAboutItem(aboutMe[lang].question, aboutMe[lang].answer);
+      aboutContainer.appendChild(aboutItem);
+
+      localStorage.setItem('cv-lang', lang);
+    }
+
+    // START
+    document.addEventListener('DOMContentLoaded', () => {
+      switchLanguage(getPreferredLanguage());
+    });
+  </script>
+
+</body>
+</html>
