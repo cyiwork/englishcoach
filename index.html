@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alek — English Coach for Kids & Teens</title>
+  <title>Alek — English Coach for Kids & Professionals</title>
   <style>
     * {
       margin: 0;
@@ -26,8 +26,8 @@
       width: 100%;
       max-width: 480px;
       border-radius: 24px;
-      overflow: visible; /* Allows floating image */
-      padding-top: 80px; /* Makes space for floating image */
+      overflow: visible;
+      padding-top: 80px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.15);
       text-align: center;
       position: relative;
@@ -61,7 +61,7 @@
       height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      margin: -75px auto 20px; /* Floats image up */
+      margin: -75px auto 20px;
       border: 5px solid white;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
@@ -86,7 +86,7 @@
       font-size: 15px;
     }
 
-    .skills, .testimonials, .faq-section, .contact {
+    .skills, .testimonials, .faq-section, .about-section, .contact {
       padding: 25px 30px;
       margin: 0;
     }
@@ -99,7 +99,7 @@
       background: #f0f7ff;
     }
 
-    .faq-section {
+    .faq-section, .about-section {
       background: #fff8e1;
     }
 
@@ -162,13 +162,14 @@
       display: inline-block;
       background: #25D366;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 25px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 16px;
       margin: 10px 0;
       transition: background 0.3s;
+      box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
     }
 
     .whatsapp-btn:hover {
@@ -181,8 +182,8 @@
       color: #95a5a6;
     }
 
-    /* FAQ Accordion Styles */
-    .faq-item {
+    /* FAQ & About Accordion */
+    .faq-item, .about-item {
       margin-bottom: 10px;
       border-radius: 10px;
       background: #fff3e0;
@@ -190,7 +191,7 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    .faq-question-btn {
+    .faq-question-btn, .about-question-btn {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -206,22 +207,22 @@
       transition: background 0.2s;
     }
 
-    .faq-question-btn:hover {
+    .faq-question-btn:hover, .about-question-btn:hover {
       background: #ffe082;
     }
 
-    .faq-question-btn::after {
+    .faq-question-btn::after, .about-question-btn::after {
       content: '+';
       font-size: 20px;
       transition: transform 0.3s;
     }
 
-    .faq-item.active .faq-question-btn::after {
+    .faq-item.active .faq-question-btn::after, .about-item.active .about-question-btn::after {
       content: '−';
       transform: rotate(180deg);
     }
 
-    .faq-answer-container {
+    .faq-answer-container, .about-answer-container {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease-out;
@@ -229,34 +230,15 @@
       padding: 0 15px;
     }
 
-    .faq-item.active .faq-answer-container {
+    .faq-item.active .faq-answer-container, .about-item.active .about-answer-container {
       max-height: 500px;
     }
 
-    .faq-answer {
+    .faq-answer, .about-answer {
       color: #555;
       font-size: 14px;
       line-height: 1.5;
       padding: 15px 0;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-links a {
-      color: #1976d2;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 15px;
-      transition: color 0.3s;
-    }
-
-    .contact-links a:hover {
-      color: #0d47a1;
-      text-decoration: underline;
     }
 
     .socials {
@@ -299,7 +281,8 @@
     </div>
 
     <!-- Profile Photo -->
-    <img src="https://i.imgur.com/dpXAjFG.jpg" alt="Alek - English Coach" class="profile-pic">
+    <!-- 🖼️ REPLACE THIS WITH YOUR GITHUB RAW LINK -->
+    <img src="https://github.com/YOUR-USERNAME/YOUR-REPO-NAME/raw/main/profile.jpg" alt="Alek - English Coach" class="profile-pic">
 
     <!-- Name & Title -->
     <h1 class="name" data-en="Alek" data-ru="Алек"></h1>
@@ -307,8 +290,8 @@
 
     <!-- Bio -->
     <p class="bio" 
-       data-en="Hi! I’m Alek. I help kids and teens learn English through games, stories, and real conversations — no stress, just progress."
-       data-ru="Привет! Я Алек. Я помогаю детям и подросткам учить английский через игры, истории и живое общение — без стресса, только прогресс.">
+       data-en="Hi! I help kids, teens, and professionals learn English through fun, games, and real conversations — no stress, just progress."
+       data-ru="Привет! Я помогаю детям, подросткам и профессионалам учить английский через игры, истории и живое общение — без стресса, только прогресс.">
     </p>
 
     <!-- Services -->
@@ -326,11 +309,19 @@
         <!-- JS will populate with img elements -->
       </div>
       <div class="add-review-cta">
-        <p data-en="📸 Send a screenshot of your WhatsApp message to:" data-ru="📸 Отправьте скриншот вашего сообщения в WhatsApp:"></p>
-        <a href="https://wa.me/79998965379" class="whatsapp-btn" target="_blank">
-          📱 +7 (999) 896-53-79
+        <p data-en="📅 Ready to start? Book your first lesson now!" data-ru="📅 Готовы начать? Забронируйте свой первый урок сейчас!"></p>
+        <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" class="whatsapp-btn" target="_blank">
+          💬 Message Me on WhatsApp
         </a>
-        <p class="small" data-en="(I’ll add your screenshot here with your permission!)" data-ru="(Я добавлю ваш скриншот сюда с вашего разрешения!)"></p>
+        <p class="small" data-en="“Learning English is like unlocking a superpower — it’s fun, powerful, and opens new worlds!”" data-ru="“Изучать английский — как получить суперсилу: весело, мощно и открывает новые миры!”"></p>
+      </div>
+    </div>
+
+    <!-- About Me Accordion -->
+    <div class="about-section">
+      <h3 class="section-title" data-en="About Me" data-ru="Обо мне"></h3>
+      <div class="about-accordion" id="about-accordion">
+        <!-- JS will populate -->
       </div>
     </div>
 
@@ -338,25 +329,22 @@
     <div class="faq-section">
       <h3 class="section-title" data-en="Frequently Asked Questions" data-ru="Часто задаваемые вопросы"></h3>
       <div class="faq-accordion" id="faq-accordion">
-        <!-- JS will populate with interactive items -->
+        <!-- JS will populate -->
       </div>
     </div>
 
     <!-- Contact -->
     <div class="contact">
       <h3 class="section-title" data-en="Get in Touch" data-ru="Свяжитесь со мной"></h3>
-      <div class="contact-links">
-        <a href="mailto:lessons@angliskomu.ru" class="contact-item" data-en="📧 lessons@angliskomu.ru" data-ru="📧 lessons@angliskomu.ru"></a>
-        <a href="https://wa.me/79998965379" class="contact-item" data-en="💬 WhatsApp: +7 (999) 896-53-79" data-ru="💬 WhatsApp: +7 (999) 896-53-79"></a>
-        <!-- Optional: Add Calendly link later -->
-        <!-- <a href="https://calendly.com/yourname" target="_blank" class="contact-item" data-en="📅 Book a Free Trial" data-ru="📅 Записаться на пробный урок"></a> -->
-      </div>
+      <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" class="whatsapp-btn" target="_blank">
+        💬 Message Me on WhatsApp
+      </a>
+      <p class="small" data-en="I reply within 24 hours!" data-ru="Отвечаю в течение 24 часов!"></p>
     </div>
 
     <!-- Social Icons -->
     <div class="socials">
       <div class="social-icons">
-        <!-- Optional: Add your real links later -->
         <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">📷</a>
         <a href="https://t.me/yourchannel" target="_blank" aria-label="Telegram">✈️</a>
         <a href="https://youtube.com/@yourchannel" target="_blank" aria-label="YouTube">▶️</a>
@@ -369,23 +357,34 @@
     </footer>
   </div>
 
-  <!-- ✅ JAVASCRIPT SECTION — COPY THIS ENTIRE <script> BLOCK -->
   <script>
-    // =============== SERVICES ===============
+    // SERVICES
     const services = {
-      en: ["Kids 6-10", "Teens 11-15", "Beginner Adults", "School Exam Prep", "Speaking Confidence"],
-      ru: ["Дети 6-10 лет", "Подростки 11-15 лет", "Взрослые новички", "Подготовка к школьным экзаменам", "Разговорный английский"]
+      en: ["Business English", "DSAT", "Speaking Confidence", "Kids 6-12", "Teens 13-19", "Adults", "IELTS"],
+      ru: ["Бизнес-английский", "DSAT", "Разговорный английский", "Дети 6-12 лет", "Подростки 13-19 лет", "Взрослые", "IELTS"]
     };
 
-    // =============== TESTIMONIAL IMAGES ===============
-    // REPLACE WITH YOUR OWN IMGUR LINKS LATER
+    // TESTIMONIAL IMAGES
+    // 🖼️ REPLACE THESE WITH YOUR GITHUB RAW LINKS
     const testimonialImages = [
-      "https://via.placeholder.com/400x200?text=WhatsApp+Review+1",
-      "https://via.placeholder.com/400x200?text=WhatsApp+Review+2",
-      "https://via.placeholder.com/400x200?text=WhatsApp+Review+3"
+      "https://github.com/YOUR-USERNAME/YOUR-REPO-NAME/raw/main/review1.jpg",
+      "https://github.com/YOUR-USERNAME/YOUR-REPO-NAME/raw/main/review2.jpg",
+      "https://github.com/YOUR-USERNAME/YOUR-REPO-NAME/raw/main/review3.jpg"
     ];
 
-    // =============== FAQ DATA ===============
+    // ABOUT ME
+    const aboutMe = {
+      en: {
+        question: "Who is Alek?",
+        answer: "I help students of all ages — from kids to CEOs — speak English with confidence. I mix fun, games, and real-life practice so learning never feels like work!"
+      },
+      ru: {
+        question: "Кто такой Алек?",
+        answer: "Я помогаю ученикам всех возрастов — от детей до руководителей — говорить по-английски уверенно. Я смешиваю игры, веселье и практику, чтобы обучение никогда не казалось работой!"
+      }
+    };
+
+    // FAQ
     const faqs = {
       en: [
         {
@@ -394,11 +393,11 @@
         },
         {
           question: "How much do lessons cost?",
-          answer: "Prices start at 1,500 RUB per 45-minute lesson. First trial lesson is FREE!"
+          answer: "Prices vary by program (DSAT, Business English, Conversational, etc.). Message me on WhatsApp for a personalized quote!"
         },
         {
           question: "What ages do you teach?",
-          answer: "I specialize in kids 6-10 and teens 11-15. I also work with beginner adults."
+          answer: "I teach everyone! Kids 6-12, Teens 13-19, Adults, and Professionals. Everyone learns differently — I customize lessons just for you."
         },
         {
           question: "Do you give homework?",
@@ -406,7 +405,7 @@
         },
         {
           question: "How do I book a trial lesson?",
-          answer: "Message me on WhatsApp (+7 999 896-53-79) or email me at lessons@angliskomu.ru. I’ll reply within 24 hours!"
+          answer: "Just message me on WhatsApp! I’ll reply within 24 hours to set up your free trial."
         }
       ],
       ru: [
@@ -416,11 +415,11 @@
         },
         {
           question: "Сколько стоят занятия?",
-          answer: "Цены начинаются от 1500 руб. за 45 минут. Первое пробное занятие — БЕСПЛАТНО!"
+          answer: "Цены зависят от программы (DSAT, бизнес-английский, разговорный и т.д.). Напишите мне в WhatsApp для персонального предложения!"
         },
         {
           question: "Какой возраст учеников?",
-          answer: "Я специализируюсь на детях 6-10 лет и подростках 11-15 лет. Также работаю со взрослыми новичками."
+          answer: "Я преподаю всем! Дети 6-12 лет, подростки 13-19 лет, взрослые и профессионалы. Каждый учится по-своему — я создаю уроки специально для вас."
         },
         {
           question: "Вы задаете домашнее задание?",
@@ -428,12 +427,12 @@
         },
         {
           question: "Как записаться на пробный урок?",
-          answer: "Напишите мне в WhatsApp (+7 999 896-53-79) или на почту lessons@angliskomu.ru. Ответлю в течение 24 часов!"
+          answer: "Просто напишите мне в WhatsApp! Отвечу в течение 24 часов, чтобы назначить бесплатный пробный урок."
         }
       ]
     };
 
-    // =============== LANGUAGE FUNCTIONS ===============
+    // LANGUAGE FUNCTIONS
     function detectBrowserLanguage() {
       const lang = navigator.language || navigator.userLanguage;
       return lang.startsWith('ru') ? 'ru' : 'en';
@@ -444,7 +443,7 @@
       return savedLang || detectBrowserLanguage();
     }
 
-    // =============== FAQ ACCORDION CREATOR ===============
+    // ACCORDION CREATOR
     function createFAQItem(question, answer) {
       const item = document.createElement('div');
       item.className = 'faq-item';
@@ -471,12 +470,39 @@
       return item;
     }
 
-    // =============== MAIN LANGUAGE SWITCHER ===============
+    // ABOUT ME CREATOR
+    function createAboutItem(question, answer) {
+      const item = document.createElement('div');
+      item.className = 'about-item';
+
+      const button = document.createElement('button');
+      button.className = 'about-question-btn';
+      button.textContent = question;
+
+      const answerContainer = document.createElement('div');
+      answerContainer.className = 'about-answer-container';
+
+      const answerText = document.createElement('p');
+      answerText.className = 'about-answer';
+      answerText.textContent = answer;
+
+      answerContainer.appendChild(answerText);
+      item.appendChild(button);
+      item.appendChild(answerContainer);
+
+      button.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+
+      return item;
+    }
+
+    // MAIN LANGUAGE SWITCHER
     function switchLanguage(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.lang = lang;
 
-      // Update all translatable elements
+      // Update text
       document.querySelectorAll('[data-en], [data-ru]').forEach(el => {
         const key = el.getAttribute('data-' + lang);
         if (key) el.textContent = key;
@@ -498,7 +524,7 @@
       testimonialImages.forEach(imgUrl => {
         const img = document.createElement('img');
         img.src = imgUrl;
-        img.alt = "Student WhatsApp Review";
+        img.alt = "Student Review";
         img.className = 'testimonial-img';
         img.loading = "lazy";
         galleryContainer.appendChild(img);
@@ -512,10 +538,16 @@
         faqContainer.appendChild(faqItem);
       });
 
+      // Update About Me
+      const aboutContainer = document.getElementById('about-accordion');
+      aboutContainer.innerHTML = '';
+      const aboutItem = createAboutItem(aboutMe[lang].question, aboutMe[lang].answer);
+      aboutContainer.appendChild(aboutItem);
+
       localStorage.setItem('cv-lang', lang);
     }
 
-    // Initialize on load
+    // START
     document.addEventListener('DOMContentLoaded', () => {
       switchLanguage(getPreferredLanguage());
     });
