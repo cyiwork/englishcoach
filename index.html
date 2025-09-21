@@ -132,14 +132,18 @@
       grid-template-columns: 1fr;
       gap: 15px;
       margin: 20px 0;
+      padding: 0 20px; /* Adds left/right padding */
     }
 
     .testimonial-img {
       width: 100%;
+      max-width: 300px; /* 👈 NEW: Prevents images from being too wide */
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       border: 1px solid #e0e0e0;
       transition: transform 0.2s;
+      margin: 0 auto; /* 👈 Centers the image */
+      display: block; /* 👈 Needed for margin: 0 auto to work */
     }
 
     .testimonial-img:hover {
