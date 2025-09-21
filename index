@@ -407,15 +407,15 @@
   <script>
     // SERVICES
     const services = {
-      en: ["Business English", "DSAT", "Speaking Confidence", "Kids 6-12", "Teens 13-19", "Adults", "IELTS"],
-      ru: ["Бизнес-английский", "DSAT", "Разговорный английский", "Дети 6-12 лет", "Подростки 13-19 лет", "Взрослые", "IELTS"]
+      en: ["Business English", "SAT", "Speaking Confidence", "Kids 6-12", "Teens 13-19", "Adults", "IELTS"],
+      ru: ["Бизнес-английский", "SAT", "Разговорный английский", "Дети 6-12 лет", "Подростки 13-19 лет", "Взрослые", "IELTS"]
     };
 
     // TESTIMONIALS
     const testimonialImages = [
-      "https://i.imgur.com/AbC123d.jpg",
-      "https://i.imgur.com/XyZ789e.jpg",
-      "https://i.imgur.com/LmN456f.jpg"
+      "https://github.com/cyiwork/englishcoach/raw/mb-rev.jpg",
+      "https://github.com/cyiwork/englishcoach/raw/p-rev.jpg",
+    <!-- "https://i.imgur.com/LmN456f.jpg" -->
     ];
 
     function createTestimonialItem(imgUrl) {
