@@ -186,6 +186,74 @@
       color: #95a5a6;
     }
 
+    /* TESTIMONIAL ACCORDION */
+.testimonial-item {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #fff3e0;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.testimonial-question-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  background: #ffecb3;
+  border: none;
+  text-align: left;
+  font-weight: 600;
+  color: #e65100;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.testimonial-question-btn:hover {
+  background: #ffe082;
+}
+
+.testimonial-question-btn::after {
+  content: '+';
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.testimonial-item.active .testimonial-question-btn::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.testimonial-answer-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: white;
+  padding: 0 15px;
+}
+
+.testimonial-item.active .testimonial-answer-container {
+  max-height: 500px;
+}
+
+.testimonial-img {
+  width: 100%;
+  max-width: 200px; /* 👈 HALF SIZE */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s;
+  margin: 10px auto;
+  display: block;
+}
+
+.testimonial-img:hover {
+  transform: scale(1.02);
+}
+
     /* FAQ & About Accordion */
     .faq-item, .about-item {
       margin-bottom: 10px;
@@ -305,11 +373,19 @@
       </div>
     </div>
 
+    <!-- About Me Accordion -->
+    <div class="about-section">
+      <h3 class="section-title" data-en="About Me" data-ru="Обо мне"></h3>
+      <div class="about-accordion" id="about-accordion">
+        <!-- JS will populate -->
+      </div>
+    </div>
+
     <!-- Testimonials -->
     <div class="testimonials">
       <h3 class="section-title" data-en="What My Students Say" data-ru="Отзывы учеников и родителей"></h3>
-      <div class="testimonial-gallery" id="testimonial-gallery">
-        <!-- JS will populate with img elements -->
+      <div class="testimonial-accordion" id="testimonial-accordion">
+      <!-- JS will populate with interactive items -->
       </div>
       <div class="add-review-cta">
         <p data-en="📅 Ready to start? Book your first lesson now!" data-ru="📅 Готовы начать? Забронируйте свой первый урок сейчас!"></p>
@@ -317,14 +393,6 @@
           💬 Message Me on WhatsApp
         </a>
         <p class="small" data-en="“Learning English is like unlocking a superpower — it’s fun, powerful, and opens new worlds!”" data-ru="“Изучать английский — как получить суперсилу: весело, мощно и открывает новые миры!”"></p>
-      </div>
-    </div>
-
-    <!-- About Me Accordion -->
-    <div class="about-section">
-      <h3 class="section-title" data-en="About Me" data-ru="Обо мне"></h3>
-      <div class="about-accordion" id="about-accordion">
-        <!-- JS will populate -->
       </div>
     </div>
 
@@ -367,12 +435,48 @@
       ru: ["Бизнес-английский", "DSAT", "Разговорный английский", "Дети 6-12 лет", "Подростки 13-19 лет", "Взрослые", "IELTS"]
     };
 
-    // TESTIMONIAL IMAGES
-    const testimonialImages = [
-      "https://github.com/cyiwork/englishcoach/raw/main/mb-rev.jpg",
-      "https://github.com/cyiwork/englishcoach/raw/main/p-rev.jpg",
-     <!-- "https://github.com/cyiwork/englishcoach/raw/main/review3.jpg" -->
-    ];
+    // TESTIMONIALS
+const testimonialImages = [
+  "https://i.imgur.com/AbC123d.jpg",
+  "https://i.imgur.com/XyZ789e.jpg",
+  "https://i.imgur.com/LmN456f.jpg"
+];
+
+function createTestimonialItem(imgUrl) {
+  const item = document.createElement('div');
+  item.className = 'testimonial-item';
+
+  const button = document.createElement('button');
+  button.className = 'testimonial-question-btn';
+  button.textContent = "Student Review";
+
+  const answerContainer = document.createElement('div');
+  answerContainer.className = 'testimonial-answer-container';
+
+  const img = document.createElement('img');
+  img.src = imageUrl;
+  img.alt = "Student WhatsApp Review";
+  img.className = 'testimonial-img';
+  img.loading = "lazy";
+
+  answerContainer.appendChild(img);
+  item.appendChild(button);
+  item.appendChild(answerContainer);
+
+  button.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+
+  return item;
+}
+
+// In switchLanguage() function:
+const testimonialContainer = document.getElementById('testimonial-accordion');
+testimonialContainer.innerHTML = '';
+testimonialImages.forEach(imgUrl => {
+  const testimonialItem = createTestimonialItem(imgUrl);
+  testimonialContainer.appendChild(testimonialItem);
+});
 
     // ABOUT ME
     const aboutMe = {
