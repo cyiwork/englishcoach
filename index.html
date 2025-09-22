@@ -1,627 +1,746 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alek — English Coach for Kids & Professionals</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Alek — English Coach | Business, Exams, General (RU/EN)</title>
+  <meta name="description" content="Business English, IELTS/SAT prep, and General English with a native teacher from Los Angeles. RU/EN. Engaging methods, measurable results.">
+
+  <!-- Google Fonts: Poppins for headings, Roboto for body -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?
+      family=Poppins:wght@600;700&
+      family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    html {
+  scroll-behavior: smooth;
+}
+    
+    :root {
+  --bg: #121926; /* softer than pure navy */
+  --panel: #191f2c;
+  --card: #1f2636;
+  --border: #1f2a3a;
+  --text: #e6ebf2; /* off-white for less glare */
+  --muted: #7b8aa0;
+  --brand: #4db6ff;
+  --brand-dark: #279fe8;
+  --accent: #ffc14d;
 
-    body {
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
+  /* original heavy shadow (you can keep for other elements) */
+  --shadow: 0 8px 24px rgba(0,0,0,.35);
 
-    .cv-card {
-      background: white;
-      width: 100%;
-      max-width: 480px;
-      border-radius: 24px;
-      overflow: visible;
-      padding-top: 80px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-      text-align: center;
-      position: relative;
-    }
+  /* new card‐specific shadow */
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
-    .lang-switcher {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      display: flex;
-      gap: 8px;
-    }
+  --radius: 12px;
+  --gap: 18px;
+  --maxw: 1200px;
+      
+  --h1: clamp(32px,5vw,52px);
+  --h2: clamp(24px,4vw,36px);
+  --h3: clamp(20px,3vw,28px);
+  --p: clamp(16px,2.2vw,18px);
+  --small: 14px;
+}
+/* —————————————————————————————— */
+/* TYPOGRAPHY: lock all body copy at 18px */
 
-    .lang-btn {
-      background: rgba(255,255,255,0.8);
-      border: 1px solid #ddd;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+p,
+li {
+  font-size: 18px;
+}
 
-    .lang-btn:hover {
-      background: white;
-      transform: scale(1.05);
-    }
+/* — headings, cards, etc. */
 
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: -75px auto 20px;
-      border: 5px solid white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+h1 {
+  font-size: var(--h1);
+  /* … */
+}
+h2 {
+  font-size: var(--h2);
+  /* … */
+}
+h3 {
+  font-size: var(--h3);
+  /* … */
+}
 
-    .name {
-      font-size: 28px;
-      font-weight: 700;
-      color: #2c3e50;
-      margin-bottom: 5px;
-    }
 
-    .title {
-      font-size: 18px;
-      color: #7f8c8d;
-      margin-bottom: 20px;
-    }
+/* on larger screens, lift cards a bit more */
+@media (min-width: 768px) {
+  :root {
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+}
 
-    .bio {
-      padding: 0 30px 25px;
-      color: #555;
-      line-height: 1.6;
-      font-size: 15px;
-    }
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    .skills, .testimonials, .faq-section, .about-section, .contact {
-      padding: 25px 30px;
-      margin: 0;
-    }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
 
-    .skills {
-      background: #f8f9fa;
-    }
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
 
-    .testimonials {
-      background: #f0f7ff;
-    }
+a:hover {
+  text-decoration: underline;
+}
 
-    .faq-section, .about-section {
-      background: #fff8e1;
-    }
+/* Typography */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+}
 
-    .section-title {
-      color: #2c3e50;
-      margin-bottom: 15px;
-      font-size: 18px;
-      font-weight: 600;
-    }
+h1 { font-size: var(--h1); margin-bottom: var(--gap); }
+h2 { font-size: var(--h2); margin-bottom: var(--gap); }
+h3 { font-size: var(--h3); margin-bottom: 12px; }
 
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+/* Layout helpers */
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+section { padding: 48px 0; }
 
-    .skill-tag {
-      background: #e3f2fd;
-      color: #1976d2;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      border: 1px solid #bbdefb;
-    }
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10,14,21,.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+}
 
-    /* TESTIMONIAL ACCORDION */
-    .testimonial-item {
-      margin-bottom: 10px;
-      border-radius: 10px;
-      background: #fff3e0;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
 
-    .testimonial-question-btn {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 15px;
-      background: #ffecb3;
-      border: none;
-      text-align: left;
-      font-weight: 600;
-      color: #e65100;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
 
-    .testimonial-question-btn:hover {
-      background: #ffe082;
-    }
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
+}
 
-    .testimonial-question-btn::after {
-      content: '+';
-      font-size: 20px;
-      transition: transform 0.3s;
-    }
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: var(--small);
+}
 
-    .testimonial-item.active .testimonial-question-btn::after {
-      content: '−';
-      transform: rotate(180deg);
-    }
+.nav-links a,
+.nav-links button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  opacity: .9;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
 
-    .testimonial-answer-container {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      background: white;
-      padding: 0 15px;
-    }
+.nav-links a:hover,
+.nav-links button:hover {
+  background: rgba(255,255,255,.05);
+}
 
-    .testimonial-item.active .testimonial-answer-container {
-      max-height: 500px;
-    }
+.cta {
+  background: var(--brand);
+  color: #002038;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 8px 14px;
+  box-shadow: 0 6px 20px rgba(0,86,172,.3);
+  font-size: var(--small);
+}
 
-    .testimonial-img {
-      width: 100%;
-      max-width: 200px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      border: 1px solid #e0e0e0;
-      transition: transform 0.2s;
-      margin: 10px auto;
-      display: block;
-    }
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  box-shadow: var(--card-shadow);   /* ← uses the new variable */
+}
 
-    .testimonial-img:hover {
-      transform: scale(1.02);
-    }
+/* extra breathing room between paragraphs in each track */
+.biz-track p {
+  margin-bottom: 16px;
+}
+    
+/* Grid helpers */
+.row {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
 
-    .add-review-cta {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px dashed #bdc3c7;
-    }
+ul.list {
+  margin-left: 16px;
+  margin-top: 8px;
+}
 
-    .add-review-cta p {
-      color: #555;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
+.muted {
+  color: var(--muted);
+  font-size: var(--p);
+}
 
-    .whatsapp-btn {
-      display: inline-block;
-      background: #25D366;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      margin: 10px 0;
-      transition: background 0.3s;
-      box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
-    }
+/* Avatar */
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
 
-    .whatsapp-btn:hover {
-      background: #128C7E;
-      transform: translateY(-2px);
-    }
+.avatar img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
 
-    .small {
-      font-size: 12px;
-      color: #95a5a6;
-    }
+/* Testimonials */
+.testimonial-img {
+  width: 140px;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  margin-right: 12px;
+  margin-bottom: 12px;
+}
 
-    /* FAQ & About Accordion */
-    .faq-item, .about-item {
-      margin-bottom: 10px;
-      border-radius: 10px;
-      background: #fff3e0;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+.testimonial-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,.4);
+}
 
-    .faq-question-btn, .about-question-btn {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 15px;
-      background: #ffecb3;
-      border: none;
-      text-align: left;
-      font-weight: 600;
-      color: #e65100;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
 
-    .faq-question-btn:hover, .about-question-btn:hover {
-      background: #ffe082;
-    }
+.lightbox.active {
+  display: flex;
+}
 
-    .faq-question-btn::after, .about-question-btn::after {
-      content: '+';
-      font-size: 20px;
-      transition: transform 0.3s;
-    }
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.8);
+}
 
-    .faq-item.active .faq-question-btn::after, .about-item.active .about-question-btn::after {
-      content: '−';
-      transform: rotate(180deg);
-    }
+/* Footer */
+footer {
+  background: rgba(10,14,21,.9);
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  font-size: var(--small);
+}
 
-    .faq-answer-container, .about-answer-container {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      background: white;
-      padding: 0 15px;
-    }
+footer .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap);
+}
 
-    .faq-item.active .faq-answer-container, .about-item.active .about-answer-container {
-      max-height: 500px;
-    }
+footer a:hover {
+  text-decoration: underline;
+}
 
-    .faq-answer, .about-answer {
-      color: #555;
-      font-size: 14px;
-      line-height: 1.5;
-      padding: 15px 0;
-    }
-
-    .socials {
-      padding: 20px 0;
-      background: #2c3e50;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .social-icons a {
-      color: white;
-      font-size: 22px;
-      text-decoration: none;
-      transition: transform 0.3s;
-    }
-
-    .social-icons a:hover {
-      transform: translateY(-3px);
-    }
-
-    footer {
-      padding: 15px;
-      background: #1a252f;
-      color: #bdc3c7;
-      font-size: 12px;
-    }
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .nav { height: 56px; }
+  h1 { font-size: clamp(28px,7vw,40px); }
+}
   </style>
 </head>
 <body>
-
-  <div class="cv-card">
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-      <button onclick="switchLanguage('en')" class="lang-btn">🇺🇸</button>
-      <button onclick="switchLanguage('ru')" class="lang-btn">🇷🇺</button>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo"></div>
+        Alek — English Coach
+      </div>
+      <div class="nav-links">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#exams" data-i18n="nav.exams">Exams</a>
+        <a href="#general" data-i18n="nav.general">General</a>
+        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <button id="langToggle">RU</button>
+        <a class="cta" href="https://wa.me/79998965379" target="_blank" data-i18n="nav.book">Book a lesson</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Profile Photo -->
-    <img src="https://github.com/cyiwork/englishcoach/raw/0cc5a63e61ed178c3b3e61244cf847e3035475e6/main-p.jpg" alt="Alek - English Coach" class="profile-pic">
+  <main>
+    <!-- HERO -->
+    <section class="hero" style="background: linear-gradient(180deg, #0a0e17 0%, #0c1321 100%);">
+      <div class="container">
+        <h1 data-i18n="hero.h1">Speak English with confidence — lessons tailored to your goals</h1>
+        <p class="muted" style="max-width:600px;" data-i18n="hero.lead">
+          I teach Business English, IELTS/SAT prep, and General English with engaging methods and measurable results.
+        </p>
+        <div style="margin-top:24px;">
+          <a class="btn primary" href="https://wa.me/79998965379" target="_blank">💬 <span data-i18n="hero.cta1">Message me on WhatsApp</span></a>
+          <a class="btn" href="#services">📚 <span data-i18n="hero.cta2">Explore services</span></a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Name & Title -->
-    <h1 class="name" data-en="Alek" data-ru="Алек"></h1>
-    <h2 class="title" data-en="Your Friendly English Coach" data-ru="Ваш преподаватель английского"></h2>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2 data-i18n="about.h2">About me</h2>
+        <div class="row">
+          <div class="card">
+            <div class="avatar">
+              <img src="https://github.com/cyiwork/englishcoach/raw/0cc5a63e61ed178c3b3e61244cf847e3035475e6/main-p.jpg" alt="Alek portrait">
+              <div>
+                <strong data-i18n="about.heading">
+                  Native English teacher from Los Angeles, based in Russia
+                </strong><br>
+                <a href="https://www.linkedin.com/in/okuperman/" target="_blank">LinkedIn →</a>
+              </div>
+            </div>
+            <p data-i18n="about.p1">
+              I hold a B.S. with a minor in cognitive psychology and built a successful career in IT before moving to teaching.
+            </p>
+            <p data-i18n="about.p2">
+              For the past 8 years in Russia, I’ve helped students speak confidently using creative, practical, and results-driven methods.
+            </p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="about.method">How I teach</h3>
+            <ul class="list">
+              <li><strong data-i18n="li.label1">Understanding:</strong> <span data-i18n="about.l1">No rote memorization — real comprehension and use.</span></li>
+              <li><strong data-i18n="li.label2">Engagement:</strong> <span data-i18n="about.l2">Games, multimedia, and storytelling that stick.</span></li>
+              <li><strong data-i18n="li.label3">Personalization:</strong> <span data-i18n="about.l3">Lessons tailored to your goals and pace.</span></li>
+              <li><strong data-i18n="li.label4">Results:</strong> <span data-i18n="about.l4">Progress tracking and clear milestones.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Bio -->
-    <p class="bio" 
-       data-en="Hi! I help kids, teens, and professionals learn English through fun, games, and real conversations — no stress, just progress."
-       data-ru="Привет! Я помогаю детям, подросткам и профессионалам учить английский через игры, истории и живое общение — без стресса, только прогресс.">
+    <!-- BUSINESS ENGLISH -->
+    <section id="services">
+      <div class="container">
+        <h2 data-i18n="services.h2">Business English</h2>
+        <span class="badge">💼 <span data-i18n="services.pill">Professionals & teams</span></span>
+        <div class="row" style="margin-top:24px;">
+          <div class="card">
+            <!-- UPDATED TEXT -->
+            <p>
+              I bring a decade of experience in IT and business management to my English teaching practice. My lessons are designed for Russian professionals who need to communicate clearly and persuasively in global environments. From technical vocabulary to cultural fluency, I help students speak with confidence and precision.
+            </p>
+            <p style="margin-top:12px;">
+              A thing that I noticed about the Russian culture is that you are supposed to be humble and modest, which sometimes does you a disservice in a business environment. Not to mention there are certain linguistic nuances. Business English is not taught at universities or schools—you learn it through constant communication.
+            </p>
+            <p style="margin-top:12px;">Here are some things I’ve done with my students:</p>
+            <ul class="list">
+              <li>In a month I helped a COO create a business offer that stands out in the European market of Mediation.</li>
+              <li>Helped an IT specialist converse with his Dutch colleagues in their professional slang.</li>
+              <li>Within 6 months, helped a student employed at an international company overcome his reliance on an interpreter.</li>
+            </ul>
+            <p style="margin-top:12px;">
+              I can help you build fluency for presentations, emails, and negotiations.
+            </p>
+          </div>
+
+          <div class="card">
+  <h3 data-i18n="services.h3b">Why me</h3>
+  <div class="avatar">
+    <img src="https://github.com/cyiwork/englishcoach/raw/0cc5a63e61ed178c3b3e61244cf847e3035475e6/main-p.jpg"
+         alt="Alek portrait">
+    <div>
+      <a href="https://www.linkedin.com/in/okuperman/" target="_blank">LinkedIn Profile →</a><br>
+      <small class="muted" data-i18n="biz.why.tagline">
+        I combine IT & business experience with targeted language coaching.
+      </small>
+    </div>
+  </div>
+
+  <!-- Toggle Buttons -->
+  <div style="margin-bottom:12px;">
+    <button class="btn" onclick="setBizWhy('exec')">Exec Program</button>
+    <button class="btn" onclick="setBizWhy('manager')">Manager Program</button>
+    <button class="btn" onclick="setBizWhy('tech')">Tech Deep-Dive</button>
+  </div>
+
+  <!-- Executives Track -->
+  <div id="biz-exec" class="biz-track">
+    <p data-i18n="biz.exec.p">
+      I help CEOs and directors deliver high-stakes presentations with clarity and authority. Drawing on a decade in IT and business management, I refine your narrative, tighten your slides, and coach your delivery so every word lands with impact. The result: zero reliance on an interpreter and maximum executive presence.
     </p>
+    <ul class="list">
+      <li data-i18n="biz.exec.li1">
+        Keynote readiness: polished story, audience hooks, seamless transitions.
+      </li>
+      <li data-i18n="biz.exec.li2">
+        Q&A confidence: anticipate C-level objections and handle them on the fly.
+      </li>
+      <li data-i18n="biz.exec.li3">
+        Boardroom fluency: crisp language for investor, partner, and board meetings.
+      </li>
+    </ul>
+  </div>
 
-    <!-- Services -->
-    <div class="skills">
-      <h3 class="section-title" data-en="What I Offer" data-ru="Что я предлагаю"></h3>
-      <div class="skill-tags" id="service-tags">
-        <!-- Populated by JS -->
+  <!-- Managers Track -->
+  <div id="biz-manager" class="biz-track" style="display:none">
+    <p data-i18n="biz.manager.p">
+      As a project or department head, you need more than vocabulary—you need persuasive leadership language. I’ll work with you on stakeholder updates, client negotiations, and team-wide presentations, drawing on my IT & management background. Together we’ll simplify technical content, structure your arguments, and practice comfortable, natural delivery under pressure. You’ll gain the vocabulary and cultural fluency to lead meetings in English and win alignment across regions. In five sessions, you’ll be equipped to negotiate contracts, deliver status reports, and inspire your teams without hesitation.
+    </p>
+    <ul class="list">
+      <li data-i18n="biz.manager.li1">
+        Stakeholder pitches: clear objectives, benefits, and calls to action.
+      </li>
+      <li data-i18n="biz.manager.li2">
+        Negotiation playbook: language for give-and-take, concession framing.
+      </li>
+      <li data-i18n="biz.manager.li3">
+        Team enablement: how to onboard, train, and motivate an international team.
+      </li>
+    </ul>
+  </div>
+
+  <!-- Tech Deep-Dive Track -->
+  <div id="biz-tech" class="biz-track" style="display:none">
+    <p data-i18n="biz.tech.p1">
+      You’re a product architect, engineer, or investor-relations lead who must translate complex ideas into compelling English narratives. 
+      In my deep-dive program, we cover message architecture (headline, problem-solution, ROI), slide design conventions. 
+    </p>
+    <p data-i18n="biz.tech.p2">
+      We’ll also drill the idiomatic phrases that resonate in US, UK, and EU markets—reframing technical specs for non-technical audiences and crafting persuasive investor proposals.
+    </p>
+    <p data-i18n="biz.tech.p3">
+      Finally, we rehearse demos, anticipate tough Q&A, and run impromptu speaking drills. By session seven, you’ll deliver inspiring keynotes, convert in product walkthroughs, and negotiate with nuance.
+    </p>
+    <ul class="list">
+    <li data-i18n="biz.tech.li1">Investor decks: story arc, risk/reward framing, data-driven persuasion.</li>
+    <li data-i18n="biz.tech.li2">Technical demos: clear value-props, user-centric language, live Q&A mastery.</li>
+    <li data-i18n="biz.tech.li3">Cross-cultural nuance: tone, register, and idioms for global audiences.</li>
+  </ul>
+
+  </div>
+</div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- About Me Accordion -->
-    <div class="about-section">
-      <h3 class="section-title" data-en="About Me" data-ru="Обо мне"></h3>
-      <div class="about-accordion" id="about-accordion">
-        <!-- JS will populate -->
+    <!-- EXAMS -->
+    <section id="exams">
+      <div class="container">
+        <h2 data-i18n="exams.h2">Exam preparation: IELTS & SAT</h2>
+        <span class="badge">📝 <span data-i18n="exams.pill">Targeted strategies</span></span>
+        <div class="row" style="margin-top:24px;">
+          <div class="card">
+            <h3 data-i18n="exams.h3">Approach</h3>
+            <ul class="list">
+              <li><strong data-i18n="ex.l1a">Format mastery:</strong> <span data-i18n="ex.l1b">timing, structure, and scoring.</span></li>
+              <li><strong data-i18n="ex.l2a">Skills:</strong> <span data-i18n="ex.l2b">reading, writing, listening, speaking.</span></li>
+              <li><strong data-i18n="ex.l3a">Feedback:</strong> <span data-i18n="ex.l3b">regular drills and progress reviews.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 data-i18n="exams.h3b">Student result</h3>
+            <p>
+              “Studying with Alek over the year made a huge difference. My English improved drastically, and the progress from where I started to where I finished was enormous. I felt fully prepared and much more confident going into the SAT.”
+            </p>
+            <small>— SAT Student</small>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Testimonials -->
-    <div class="testimonials">
-      <h3 class="section-title" data-en="What My Students Say" data-ru="Отзывы учеников и родителей"></h3>
-      <div class="testimonial-accordion" id="testimonial-accordion">
-        <!-- JS will populate with interactive items -->
+    <!-- GENERAL ENGLISH -->
+    <section id="general">
+      <div class="container">
+        <h2 data-i18n="general.h2">General English</h2>
+        <span class="badge">🌍 <span data-i18n="general.pill">Kids, teens, adults</span></span>
+        <div class="row" style="margin-top:24px;">
+          <div class="card">
+            <h3 data-i18n="general.h3">How I teach</h3>
+            <p data-i18n="general.p">
+              I make English practical, engaging, and memorable. We use games, cartoons, online tools, and storytelling so you truly understand and use the language — not just memorize it.
+            </p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="general.h3b">Testimonials</h3>
+            <img class="testimonial-img"
+                 src="https://github.com/cyiwork/englishcoach/raw/0e6cfd6127955704753ee153b2ed242aa741129c/mb-rev.jpg"
+                 alt="Review from an 8-year-old girl">
+            <img class="testimonial-img"
+                 src="https://raw.githubusercontent.com/cyiwork/englishcoach/7a721a30284ff570a22f1b2f67845ed6581a0155/p-rev.jpg"
+                 alt="Review from a 16-year-old boy">
+          </div>
+        </div>
       </div>
-      <div class="add-review-cta">
-        <p data-en="📅 Ready to start? Book your first lesson now!" data-ru="📅 Готовы начать? Забронируйте свой первый урок сейчас!"></p>
-        <a href="https://wa.me/79998965379" class="whatsapp-btn" target="_blank">
-          💬 Message Me on WhatsApp
-        </a>
-        <p class="small" data-en="“Learning English is like unlocking a superpower — it’s fun, powerful, and opens new worlds!”" data-ru="“Изучать английский — как получить суперсилу: весело, мощно и открывает новые миры!”"></p>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="container">
+        <h2 data-i18n="pricing.h2">Pricing</h2>
+        <span class="badge">💬 <span data-i18n="pricing.note">Contact me for current rates</span></span>
+        <div class="row" style="margin-top:24px;">
+          <div class="card">
+            <h3 data-i18n="pricing.p1t">General English</h3>
+            <p data-i18n="pricing.p1d">Individual or small groups. Flexible plans.</p>
+            <a class="btn" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
+          </div>
+          <div class="card">
+            <h3 data-i18n="pricing.p2t">Business English</h3>
+            <p data-i18n="pricing.p2d">Executives, teams, presentations, negotiations.</p>
+            <a class="btn" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
+          </div>
+          <div class="card">
+            <h3 data-i18n="pricing.p3t">IELTS / SAT</h3>
+            <p data-i18n="pricing.p3d">Assessment + study plan + weekly feedback.</p>
+            <a class="btn" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- FAQ Accordion -->
-    <div class="faq-section">
-      <h3 class="section-title" data-en="Frequently Asked Questions" data-ru="Часто задаваемые вопросы"></h3>
-      <div class="faq-accordion" id="faq-accordion">
-        <!-- JS will populate -->
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2 data-i18n="contact.h2">Contact</h2>
+        <span class="badge">📍 <span data-i18n="contact.loc">Moscow / Online</span></span>
+        <div class="row" style="margin-top:24px;">
+          <div class="card">
+            <h3 data-i18n="contact.h3">Let’s talk</h3>
+            <p data-i18n="contact.p">Send me a message and tell me your goals. I’ll suggest a path and timeline.</p>
+            <a class="btn primary" href="https://wa.me/79998965379" target="_blank">💬 WhatsApp</a>
+          </div>
+          <div class="card">
+            <h3 data-i18n="contact.h3b">Typical first steps</h3>
+            <ul class="list">
+              <li><strong data-i18n="c1a">Assessment:</strong> <span data-i18n="c1b">level + goals + timeline.</span></li>
+              <li><strong data-i18n="c2a">Plan:</strong> <span data-i18n="c2b">custom curriculum and schedule.</span></li>
+              <li><strong data-i18n="c3a">Trial:</strong> <span data-i18n="c3b">mini-lesson + feedback.</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <!-- Contact -->
-    <div class="contact">
-      <h3 class="section-title" data-en="Get in Touch" data-ru="Свяжитесь со мной"></h3>
-      <a href="https://wa.me/79998965379" class="whatsapp-btn" target="_blank">
-        💬 Message Me on WhatsApp
-      </a>
-      <p class="small" data-en="I'll reply within a day!" data-ru="Я отвечу в течение дня!"></p>
-    </div>
-
-    <!-- Social Icons -->
-    <div class="socials">
-      <div class="social-icons">
-        <a href="https://instagram.com/kypc_outdoors" target="_blank" aria-label="Instagram">📷</a>
-        <a href="https://t.me/snapshotstories" target="_blank" aria-label="Telegram">✈️</a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="brand"><div class="logo"></div> Alek</div>
+          <p data-i18n="footer.tag">Native English teacher in Russia: Business English, IELTS/SAT, and General English.</p>
+        </div>
+        <div>
+          <strong data-i18n="footer.quick">Quick links</strong>
+          <ul class="list">
+            <li><a href="#about" data-i18n="nav.about">About</a></li>
+            <li><a href="#services" data-i18n="nav.services">Services</a></li>
+            <li><a href="#exams" data-i18n="nav.exams">Exams</a></li>
+            <li><a href="#general" data-i18n="nav.general">General</a></li>
+            <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong data-i18n="footer.cta">Start today</strong>
+          <p data-i18n="footer.ctaP">Book a lesson — let’s plan your next milestone.</p>
+          <a class="btn" href="https://wa.me/79998965379" target="_blank">💬 WhatsApp</a>
+        </div>
       </div>
+      <p style="margin-top:16px;" class="small">
+        © <span id="year"></span> Alek. <span data-i18n="footer.made">Made with care for my students and their families.</span>
+      </p>
     </div>
-
-    <!-- Footer -->
-    <footer>
-      <span data-en="© 2025 Alek. Made with ❤️ for my students and their families." data-ru="© 2025 Алек. Сделано с ❤️ для моих учеников и их семей."></span>
     </footer>
+
+  <!-- LIGHTBOX MARKUP -->
+  <div id="lightbox" class="lightbox" onclick="hideLightbox()">
+    <img id="lightbox-img" src="" alt="Enlarged testimonial">
   </div>
 
   <script>
-    // SERVICES
-    const services = {
-      en: ["Business English", "SAT", "Speaking Confidence", "Kids 6-12", "Teens 13-19", "Adults", "IELTS"],
-      ru: ["Бизнес-английский", "SAT", "Разговорный английский", "Дети 6-12 лет", "Подростки 13-19 лет", "Взрослые", "IELTS"]
-    };
-
-    // TESTIMONIALS
-    const testimonialImages = [
-      "https://github.com/cyiwork/englishcoach/raw/0e6cfd6127955704753ee153b2ed242aa741129c/mb-rev.jpg",
-      "https://raw.githubusercontent.com/cyiwork/englishcoach/7a721a30284ff570a22f1b2f67845ed6581a0155/p-rev.jpg",
-    <!-- "https://i.imgur.com/LmN456f.jpg" -->
-    ];
-
-    function createTestimonialItem(imgUrl) {
-      const item = document.createElement('div');
-      item.className = 'testimonial-item';
-
-      const button = document.createElement('button');
-      button.className = 'testimonial-question-btn';
-      button.textContent = "Student Review";
-
-      const answerContainer = document.createElement('div');
-      answerContainer.className = 'testimonial-answer-container';
-
-      const img = document.createElement('img');
-      img.src = imgUrl; // ✅ FIXED: was 'imageUrl'
-      img.alt = "Student WhatsApp Review";
-      img.className = 'testimonial-img';
-      img.loading = "lazy";
-
-      answerContainer.appendChild(img);
-      item.appendChild(button);
-      item.appendChild(answerContainer);
-
-      button.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-
-      return item;
-    }
-
-    // ABOUT ME
-    const aboutMe = {
+    // Full EN/RU dictionary
+    const dict = {
       en: {
-        question: "Who is Alek?",
-        answer: "I help students of all ages — from kids to CEOs — speak English with confidence. I mix fun, games, and real-life practice so learning never feels like work!"
+        "nav.about":"About","nav.services":"Services","nav.exams":"Exams","nav.general":"General",
+        "nav.pricing":"Pricing","nav.contact":"Contact","nav.book":"Book a lesson",
+        "hero.h1":"Speak English with confidence — lessons tailored to your goals",
+        "hero.lead":"I teach Business English, IELTS/SAT prep, and General English with engaging methods and measurable results.",
+        "hero.cta1":"Message me on WhatsApp","hero.cta2":"Explore services",
+        "about.h2":"About me","about.heading":"Native English teacher from Los Angeles, based in Russia",
+        "about.p1":"I hold a B.S. with a minor in cognitive psychology and built a successful career in IT before moving to teaching.",
+        "about.p2":"For the past 8 years in Russia, I’ve helped students speak confidently using creative, practical, and results-driven methods.",
+        "about.method":"How I teach","about.l1":"No rote memorization — real comprehension and use.",
+        "about.l2":"Games, multimedia, and storytelling that stick.","about.l3":"Lessons tailored to your goals and pace.",
+        "about.l4":"Progress tracking and clear milestones.","li.label1":"Understanding","li.label2":"Engagement",
+        "li.label3":"Personalization","li.label4":"Results",
+        "services.h2":"Business English","services.pill":"Professionals & teams","services.h3b":"Why me",
+        "biz.why.tagline":"I combine IT & business experience with targeted language coaching.",
+        "biz.exec.p":   "I help CEOs and directors deliver high-stakes presentations with clarity and authority. Drawing on a decade in IT and business management, I refine your narrative, tighten your slides, and coach your delivery so every word lands with impact. The result: zero reliance on an interpreter and maximum executive presence.",
+        "biz.exec.li1": "Keynote readiness: polished story, audience hooks, seamless transitions.",
+        "biz.exec.li2": "Q&A confidence: anticipate C-level objections and handle them on the fly.",
+        "biz.exec.li3": "Boardroom fluency: crisp language for investor, partner, and board meetings.",
+        "biz.manager.p":   "As a project or department head, you need more than vocabulary—you need persuasive leadership language. I’ll work with you on stakeholder updates, client negotiations, and team-wide presentations, drawing on my IT & management background. Together we’ll simplify technical content, structure your arguments, and practice comfortable, natural delivery under pressure. You’ll gain the vocabulary and cultural fluency to lead meetings in English and win alignment across regions. In five sessions, you’ll be equipped to negotiate contracts, deliver status reports, and inspire your teams without hesitation.",
+        "biz.manager.li1": "Stakeholder pitches: clear objectives, benefits, and calls to action.",
+        "biz.manager.li2": "Negotiation playbook: language for give-and-take, concession framing.",
+        "biz.manager.li3": "Team enablement: how to onboard, train, and motivate an international team.",
+        "biz.tech.p":     "You’re a product architect, engineer, or investor-relations lead who must translate complex ideas into compelling English narratives. In my deep-dive program, we cover message architecture (headline, problem-solution, ROI), slide design conventions, and the idiomatic phrases that resonate in US, UK, and EU markets. Drawing on my own IT projects and cross-border launches, you’ll learn to reframe technical specs for non-technical audiences and craft persuasive proposals for investors or enterprise buyers. We’ll rehearse your demos, anticipate tough Q&A, and practice impromptu speaking drills to build resilience. By session seven, you’ll deliver keynotes that inspire, host product walkthroughs that convert, and negotiate term sheets with nuance—not to mention lead technical workshops entirely in English. This program is your path to becoming the go-to expert in any international boardroom.",
+        "biz.tech.li1": "Investor decks: story arc, risk/reward framing, data-driven persuasion.",
+        "biz.tech.li2": "Technical demos: clear value-props, user-centric language, live Q&A mastery.",
+        "biz.tech.li3": "Cross-cultural nuance: tone, register, and idioms for global audiences.", 
+        "exams.h2":"Exam preparation: IELTS & SAT","exams.pill":"Targeted strategies","exams.h3":"Approach",
+        "ex.l1a":"Format mastery","ex.l1b":"timing, structure, and scoring.","ex.l2a":"Skills",
+        "ex.l2b":"reading, writing, listening, speaking.","ex.l3a":"Feedback","ex.l3b":"regular drills and progress reviews.",
+        "exams.h3b":"Student result","general.h2":"General English","general.pill":"Kids, teens, adults",
+        "general.h3":"How I teach","general.p":"I make English practical, engaging, and memorable. We use games, cartoons, online tools, and storytelling so you truly understand and use the language — not just memorize it.",
+        "general.h3b":"Testimonials","pricing.h2":"Pricing","pricing.note":"Contact me for current rates",
+        "pricing.p1t":"General English","pricing.p1d":"Individual or small groups. Flexible plans.",
+        "pricing.p2t":"Business English","pricing.p2d":"Executives, teams, presentations, negotiations.",
+        "pricing.p3t":"IELTS / SAT","pricing.p3d":"Assessment + study plan + weekly feedback.","pricing.cta":"Get a quote",
+        "contact.h2":"Contact","contact.loc":"Moscow / Online","contact.h3":"Let’s talk",
+        "contact.p":"Send me a message and tell me your goals. I’ll suggest a path and timeline.",
+        "contact.h3b":"Typical first steps","c1a":"Assessment","c1b":"level + goals + timeline.",
+        "c2a":"Plan","c2b":"custom curriculum and schedule.","c3a":"Trial","c3b":"mini-lesson + feedback.",
+        "footer.tag":"Native English teacher in Russia: Business English, IELTS/SAT, and General English.",
+        "footer.quick":"Quick links","footer.cta":"Start today","footer.ctaP":"Book a lesson — let’s plan your next milestone.","footer.made":"Made with care for my students and their families."
       },
       ru: {
-        question: "Кто такой Алек?",
-        answer: "Я помогаю ученикам всех возрастов — от детей до руководителей — говорить по-английски уверенно. Я смешиваю игры, веселье и практику, чтобы обучение никогда не казалось работой!"
+        "nav.about":"Обо мне","nav.services":"Услуги","nav.exams":"Экзамены","nav.general":"Общий",
+        "nav.pricing":"Цены","nav.contact":"Контакты","nav.book":"Записаться на урок",
+        "hero.h1":"Говорите уверенно — занятия под ваши цели",
+        "hero.lead":"Я преподаю бизнес-английский, подготовку к IELTS/SAT и общий английский увлекательными методами с измеримыми результатами.",
+        "hero.cta1":"Написать в WhatsApp","hero.cta2":"Узнать услуги",
+        "about.h2":"Обо мне","about.heading":"Носитель английского из Лос-Анджелеса, живу в России",
+        "about.p1":"У меня степень B.S. с майно́ром в когнитивной психологии; после успешной карьеры в IT перешел в преподавание.",
+        "about.p2":"Последние 8 лет в России помогаю студентам говорить уверенно творчески, практично и с фокусом на результат.",
+        "about.method":"Как я преподаю","about.l1":"Без зубрёжки — настоящее понимание и применение.",
+        "about.l2":"Игры, мультфильмы и сторителлинг помогают запомнить.","about.l3":"Индивидуально под ваши цели и темп.",
+        "about.l4":"Отслеживание прогресса и понятные этапы.","li.label1":"Понимание","li.label2":"Вовлечённость",
+        "li.label3":"Персонализация","li.label4":"Результат",
+        "services.h2":"Бизнес-английский","services.pill":"Профессионалам & командам","services.h3b":"Почему я",
+        "biz.why.tagline":"Я объединяю опыт в сфере IT и управления бизнесом с языковым коучингом.",
+        "biz.exec.p":   "Я помогаю CEO и директорам проводить важнейшие презентации с ясностью и авторитетом. Опираясь на десятилетний опыт в IT и управлении бизнесом, я улучшаю структуру выступления, оптимизирую слайды и тренирую подачу, чтобы каждое слово попадало в цель. Результат: никакой зависимости от переводчика и максимальное впечатление на аудиторию.",
+        "biz.exec.li1": "Подготовка ключевых докладов: сюжет, захватывающие вступления, плавные переходы.",
+        "biz.exec.li2": "Уверенность в Q&A: прогнозирование вопросов С-уровня и мгновенный ответ.",
+        "biz.exec.li3": "Корпоративная речь: лаконичные формулировки для инвесторов, партнёров и совета директоров.",
+        "biz.manager.p":   "Как руководитель проекта или отдела, вам нужна не просто лексика, а убедительная управленческая речь. Я работаю с вами над отчётами перед стейкхолдерами, переговорами с клиентами и презентациями для команды, опираясь на опыт в IT и управлении. Вместе мы упростим технический контент, структурируем ваши аргументы и отработаем уверенную подачу под давлением. Вы освоите лексику и культурную осведомлённость для ведения встреч на английском и достижения согласия в разных регионах. За пять занятий вы сможете вести переговоры, доклады и вдохновлять команду без колебаний.",
+        "biz.manager.li1": "Презентации для стейкхолдеров: цели, выгоды и призыв к действию.",
+        "biz.manager.li2": "Стратегия переговоров: язык уступок, формирование win-win.",
+        "biz.manager.li3": "Вовлечение команды: как адаптировать и мотивировать международную команду.",
+        "biz.tech.p":     "Вы архитект���р продукта, инженер или специалист по IR, которому нужно превращать сложные идеи в убедительные истории на английском. В программе погружения мы изучим архитектуру сообщения (заголовок, проблема-решение, ROI), правила дизайна слайдов и идиоматические выражения для США, Великобритании и ЕС. Опираясь на собственные проекты в IT и международные запуски, вы научитесь адаптировать технические спецификации для неспециалистов и готовить убедительные предложения для инвесторов и корпоративных клиентов. Мы репетируем демонстрации, прорабатываем сложные вопросы и практикуем экспромт-упражнения для гибкости речи. После семи занятий вы будете проводить вдохновляющие доклады, демонстрации продукта и вести переговоры с точностью, а также проводить технические семинары полностью на английском.",
+        "biz.tech.li1": "Инвестиционные презентации: сюжетная арка, оценка рисков/выгоды, доказательная аргументация.",
+        "biz.tech.li2": "Технические демонстрации: фокус на ценности, понятный язык, мастерство Q&A.",
+        "biz.tech.li3": "Кросс-культурные нюансы: тон, стиль и идиомы для глобальной аудитории.",
+        "exams.h2":"Подготовка к IELTS и SAT","exams.pill":"Точечные стратегии","exams.h3":"Подход",
+        "ex.l1a":"Знание формата","ex.l1b":"время, структура и оценивание.","ex.l2a":"Навыки",
+        "ex.l2b":"чтение, письмо, аудирование, говорение.","ex.l3a":"Обратная связь","ex.l3b":"регулярные задания и ревью прогресса.",
+        "exams.h3b":"Результат студента","general.h2":"Общий английский","general.pill":"Дети, подростки, взрослые",
+        "general.h3":"Как я учу","general.p":"Делаю английский практичным и запоминающимся. Используем игры, мультфильмы, онлайн-инструменты и сторителлинг, чтобы не зубрить, а понимать и применять язык.",
+        "general.h3b":"Отзывы","pricing.h2":"Цены","pricing.note":"Уточняйте актуальные ставки",
+        "pricing.p1t":"Общий английский","pricing.p1d":"Индивидуально или мини-группа. Гибкие планы.","pricing.p2t":"Бизнес-английский","pricing.p2d":"Для руководителей и команд: презентации, переговоры.",
+        "pricing.p3t":"IELTS / SAT","pricing.p3d":"Диагностика + план + еженедельная обратная связь.","pricing.cta":"Узнать стоимость",
+        "contact.h2":"Контакты","contact.loc":"Москва / Онлайн","contact.h3":"Поговорим",
+        "contact.p":"Напишите о целях — предложу маршрут и сроки.","contact.h3b":"С чего начнём","c1a":"Диагностика","c1b":"уровень + цели + сроки.",
+        "c2a":"План","c2b":"индивидуальная программа и расписание.","c3a":"Пробный урок","c3b":"мини-занятие + обратная связь.",
+        "footer.tag":"Носитель английского в России: бизнес-английский, IELTS/SAT и общий английский.",
+        "footer.quick":"Быстрые ссылки","footer.cta":"Начать сегодня","footer.ctaP":"Записаться на урок — спланируем ближайшую цель.","footer.made":"С заботой о студентах и их семьях."
       }
     };
 
-    // FAQ
-    const faqs = {
-      en: [
-        {
-          question: "How do lessons work?",
-          answer: "All lessons are 1-on-1 via Zoom or Google Meet. We focus on conversation, games, and real-life topics!"
-        },
-        {
-          question: "How much do lessons cost?",
-          answer: "Prices vary by program (DSAT, Business English, Conversational, etc.). Message me on WhatsApp for a personalized quote!"
-        },
-        {
-          question: "What ages do you teach?",
-          answer: "I teach everyone! Kids 6-12, Teens 13-19, Adults, and Professionals. Everyone learns differently — I customize lessons just for you."
-        },
-        {
-          question: "Do you give homework?",
-          answer: "Only fun, optional homework — like watching a cartoon or playing a vocabulary game. No stress!"
-        },
-        {
-          question: "How do I book a trial lesson?",
-          answer: "Just message me on WhatsApp! I’ll reply within a day."
-        }
-      ],
-      ru: [
-        {
-          question: "Как проходят занятия?",
-          answer: "Все занятия индивидуальные через Zoom или Встреча в Google. Мы фокусируемся на разговорах, играх и реальных темах!"
-        },
-        {
-          question: "Сколько стоят занятия?",
-          answer: "Цены зависят от программы (DSAT, бизнес-английский, разговорный и т.д.). Напишите мне в WhatsApp для персонального предложения!"
-        },
-        {
-          question: "Какой возраст учеников?",
-          answer: "Я преподаю всем! Дети 6-12 лет, подростки 13-19 лет, взрослые и профессионалы. Каждый учится по-своему — я создаю уроки специально для вас."
-        },
-        {
-          question: "Вы задаете домашнее задание?",
-          answer: "Только веселое и необязательное — например, посмотреть мультфильм или поиграть в игру. Без стресса!"
-        },
-        {
-          question: "Как записаться на пробный урок?",
-          answer: "Просто напишите мне в WhatsApp! Я отвечу в течение дня."
-        }
-      ]
-    };
-
-    // LANGUAGE FUNCTIONS
-    function detectBrowserLanguage() {
-      const lang = navigator.language || navigator.userLanguage;
-      return lang.startsWith('ru') ? 'ru' : 'en';
-    }
-
-    function getPreferredLanguage() {
-      const savedLang = localStorage.getItem('cv-lang');
-      return savedLang || detectBrowserLanguage();
-    }
-
-    // ACCORDION CREATOR
-    function createFAQItem(question, answer) {
-      const item = document.createElement('div');
-      item.className = 'faq-item';
-
-      const button = document.createElement('button');
-      button.className = 'faq-question-btn';
-      button.textContent = question;
-
-      const answerContainer = document.createElement('div');
-      answerContainer.className = 'faq-answer-container';
-
-      const answerText = document.createElement('p');
-      answerText.className = 'faq-answer';
-      answerText.textContent = answer;
-
-      answerContainer.appendChild(answerText);
-      item.appendChild(button);
-      item.appendChild(answerContainer);
-
-      button.addEventListener('click', () => {
-        item.classList.toggle('active');
+    // Language toggle
+    let currentLang = 'en';
+    const els = document.querySelectorAll('[data-i18n]');
+    const toggle = document.getElementById('langToggle');
+    function applyLang(lang) {
+      currentLang = lang;
+      els.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const txt = dict[lang][key];
+        if (txt) el.textContent = txt;
       });
-
-      return item;
-    }
-
-    // ABOUT ME CREATOR
-    function createAboutItem(question, answer) {
-      const item = document.createElement('div');
-      item.className = 'about-item';
-
-      const button = document.createElement('button');
-      button.className = 'about-question-btn';
-      button.textContent = question;
-
-      const answerContainer = document.createElement('div');
-      answerContainer.className = 'about-answer-container';
-
-      const answerText = document.createElement('p');
-      answerText.className = 'about-answer';
-      answerText.textContent = answer;
-
-      answerContainer.appendChild(answerText);
-      item.appendChild(button);
-      item.appendChild(answerContainer);
-
-      button.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-
-      return item;
-    }
-
-    // MAIN LANGUAGE SWITCHER
-    function switchLanguage(lang) {
-      document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.lang = lang;
-
-      // Update text
-      document.querySelectorAll('[data-en], [data-ru]').forEach(el => {
-        const key = el.getAttribute('data-' + lang);
-        if (key) el.textContent = key;
-      });
-
-      // Update services
-      const serviceContainer = document.getElementById('service-tags');
-      serviceContainer.innerHTML = '';
-      services[lang].forEach(service => {
-        const tag = document.createElement('span');
-        tag.className = 'skill-tag';
-        tag.textContent = service;
-        serviceContainer.appendChild(tag);
-      });
-
-      // Update testimonials
-      const testimonialContainer = document.getElementById('testimonial-accordion');
-      testimonialContainer.innerHTML = '';
-      testimonialImages.forEach(imgUrl => {
-        const testimonialItem = createTestimonialItem(imgUrl);
-        testimonialContainer.appendChild(testimonialItem);
-      });
-
-      // Update FAQ
-      const faqContainer = document.getElementById('faq-accordion');
-      faqContainer.innerHTML = '';
-      faqs[lang].forEach(item => {
-        const faqItem = createFAQItem(item.question, item.answer);
-        faqContainer.appendChild(faqItem);
-      });
-
-      // Update About Me
-      const aboutContainer = document.getElementById('about-accordion');
-      aboutContainer.innerHTML = '';
-      const aboutItem = createAboutItem(aboutMe[lang].question, aboutMe[lang].answer);
-      aboutContainer.appendChild(aboutItem);
-
-      localStorage.setItem('cv-lang', lang);
+      toggle.textContent = lang === 'en' ? 'RU' : 'EN';
     }
+    toggle.addEventListener('click', () => applyLang(currentLang === 'en' ? 'ru' : 'en'));
+    applyLang('en');
 
-    // START
-    document.addEventListener('DOMContentLoaded', () => {
-      switchLanguage(getPreferredLanguage());
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Business English variant toggles
+    function setBizWhy(n) {
+      ['3','5','7'].forEach(i => {
+        const el = document.getElementById(`biz-why-${i}`);
+        if (el) el.style.display = i === n ? 'block' : 'none';
+      });
+    }
+    window.setBizWhy = setBizWhy;
+
+    // Lightbox for testimonials
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.testimonial-img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
     });
-  </script>
+    function hideLightbox() {
+      lightbox.classList.remove('active');
+    }
+    window.hideLightbox = hideLightbox;
 
+    // Business-English toggle
+    function setBizWhy(kind) {
+     ['exec','manager','tech'].forEach(id => {
+    const el = document.getElementById('biz-' + id);
+    if (el) el.style.display = id === kind ? 'block' : 'none';
+    });
+    }
+    // Expose so buttons can call it
+    window.setBizWhy = setBizWhy;
+
+  </script>
 </body>
 </html>
