@@ -19,15 +19,15 @@
 }
     
     :root {
-  --bg: #121926; /* softer than pure navy */
-  --panel: #191f2c;
-  --card: #1f2636;
-  --border: #1f2a3a;
-  --text: #e6ebf2; /* off-white for less glare */
-  --muted: #7b8aa0;
-  --brand: #4db6ff;
-  --brand-dark: #279fe8;
-  --accent: #ffc14d;
+  --bg: #F5F5F5; /* light gray */
+  --panel: #EBEBEB;
+  --card: #FFFFFF; /* soft white */
+  --border: #E0E0E0;
+  --text: #333333; /* better readabillity */
+  --muted: #777777;
+  --brand: #2C3E50;
+  --brand-dark: #4ECDC4;
+  --accent: #FF6B6B;
 
   /* original heavy shadow (you can keep for other elements) */
   --shadow: 0 8px 24px rgba(0,0,0,.35);
@@ -68,6 +68,10 @@ h3 {
   /* … */
 }
 
+/* Update card shadow for lighter theme */
+.card {
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
 
 /* on larger screens, lift cards a bit more */
 @media (min-width: 768px) {
