@@ -136,7 +136,7 @@ header {
   align-items: center;
   gap: 10px;
   font-weight: 700;
-  color: var(--brand);
+  color: var(--brand-dark);
 }
 
 .logo {
@@ -270,7 +270,7 @@ ul.list {
 footer {
   background: var(--brand); /* Use the new primary color */
   border-top: 1px solid var(--border);
-  color: #fff;
+  color: hsl(0, 0%, 100%);
   padding: 28px 0;
   font-size: var(--small);
 }
@@ -283,6 +283,11 @@ footer .row {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+footer a {
+  color: hsl(0, 0%, 100%) /* Make all links in the footer white */
+  text-decoration: none;
 }
 
 /* Responsive tweaks */
