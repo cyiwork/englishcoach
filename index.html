@@ -123,7 +123,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(10,14,21,.85);
+  background: rgba(255,255,255,.95);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(6px);
 }
@@ -140,6 +140,7 @@ header {
   align-items: center;
   gap: 10px;
   font-weight: 700;
+  color: var(--brand);
 }
 
 .logo {
@@ -170,16 +171,17 @@ header {
 
 .nav-links a:hover,
 .nav-links button:hover {
-  background: rgba(255,255,255,.05);
+  background: rgba(0,0,0,.05);
 }
 
+/* Call to Action */
 .cta {
-  background: var(--brand);
-  color: #002038;
+  background: var(--brand-dark);
+  color: #FFFFFF;
   font-weight: 700;
   border-radius: 10px;
   padding: 8px 14px;
-  box-shadow: 0 6px 20px rgba(0,86,172,.3);
+  box-shadow: 0 6px 20px rgba(0,86,172,.15);
   font-size: var(--small);
 }
 
@@ -270,8 +272,9 @@ ul.list {
 
 /* Footer */
 footer {
-  background: rgba(10,14,21,.9);
+  background: var(--brand); /* Use the new primary color */
   border-top: 1px solid var(--border);
+  color: #fff;
   padding: 28px 0;
   font-size: var(--small);
 }
