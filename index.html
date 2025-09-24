@@ -295,6 +295,31 @@ footer a:hover {
   .nav { height: 56px; }
   h1 { font-size: clamp(28px,7vw,40px); }
 }
+
+/* Hero section's appearance */
+.hero {
+  background-color: #F5F5F5;
+  color: var(--text);
+  padding: 48px 0;
+}
+
+.hero h1 {
+  color: var(--brand);
+}
+
+/* Ensure the buttons stand out */
+.btn {
+  background-color: var(--brand-dark); /* Use the vibrant teal for a modern look */
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+
+.btn.primary {
+  background-color: var(--accent); /* Use the warm orange for the main CTA */
+  color: #fff;
+}
   </style>
 </head>
 <body>
@@ -320,7 +345,7 @@ footer a:hover {
 
   <main>
     <!-- HERO -->
-    <section class="hero" style="background: linear-gradient(180deg, #0a0e17 0%, #0c1321 100%);">
+    <section class="hero"> <!-- style="background: linear-gradient(180deg, #0a0e17 0%, #0c1321 100%);" -->
       <div class="container">
         <h1 data-i18n="hero.h1">Speak English with confidence — lessons tailored to your goals</h1>
         <p class="muted" style="max-width:600px;" data-i18n="hero.lead">
