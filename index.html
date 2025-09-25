@@ -410,6 +410,28 @@ footer a:hover {
         gap: 12px;
       }
     }
+
+    .testimonial-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    @media (max-width: 640px) {
+      .testimonial-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 12px;
+        padding-bottom: 8px;
+      }
+      .testimonial-img {
+        min-width: 140px;
+        max-width: 70vw;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -641,13 +663,15 @@ footer a:hover {
             </p>
           </div>
           <div class="card">
-            <h3 data-i18n="general.h3b">Testimonials</h3>
-            <img class="testimonial-img"
-                 src="https://github.com/cyiwork/englishcoach/raw/0e6cfd6127955704753ee153b2ed242aa741129c/mb-rev.jpg"
-                 alt="Review from an 8-year-old girl">
-            <img class="testimonial-img"
-                 src="https://raw.githubusercontent.com/cyiwork/englishcoach/7a721a30284ff570a22f1b2f67845ed6581a0155/p-rev.jpg"
-                 alt="Review from a 16-year-old boy">
+      <h3 data-i18n="general.h3b">Testimonials</h3>
+      <div class="testimonial-row">
+        <img class="testimonial-img"
+          src="https://github.com/cyiwork/englishcoach/raw/0e6cfd6127955704753ee153b2ed242aa741129c/mb-rev.jpg"
+          alt="Review from an 8-year-old girl">
+        <img class="testimonial-img"
+          src="https://raw.githubusercontent.com/cyiwork/englishcoach/7a721a30284ff570a22f1b2f67845ed6581a0155/p-rev.jpg"
+          alt="Review from a 16-year-old boy">
+      </div>
           </div>
         </div>
       </div>
