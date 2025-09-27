@@ -722,17 +722,17 @@ footer a:hover {
           <div class="card">
             <h3 data-i18n="pricing.p1t">General English</h3>
             <p data-i18n="pricing.p1d">Individual or small groups. Flexible plans.</p>
-            <a class="btn" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
+            <a class="btn pricing-quote" data-service="general" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
           </div>
           <div class="card">
             <h3 data-i18n="pricing.p2t">Business English</h3>
             <p data-i18n="pricing.p2d">Executives, teams, presentations, negotiations.</p>
-            <a class="btn" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
+            <a class="btn pricing-quote" data-service="business" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
           </div>
           <div class="card">
             <h3 data-i18n="pricing.p3t">IELTS / SAT</h3>
             <p data-i18n="pricing.p3d">Assessment + study plan + weekly feedback.</p>
-            <a class="btn" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
+            <a class="btn pricing-quote" data-service="ielts" href="https://wa.me/79998965379" target="_blank" data-i18n="pricing.cta">Get a quote</a>
           </div>
         </div>
       </div>
@@ -902,6 +902,8 @@ footer a:hover {
       });
       document.documentElement.lang = lang;
       toggle.textContent = lang === 'en' ? 'RU' : 'EN';
+      // Update pricing buttons when language changes
+      if (typeof setPricingMessages === 'function') setPricingMessages(lang);
     }
     toggle.addEventListener('click', () => applyLang(currentLang === 'en' ? 'ru' : 'en'));
     applyLang('en');
@@ -958,6 +960,39 @@ footer a:hover {
     readLessText.style.display = 'none';
   }
 }
+
+    // Pricing buttons: set WhatsApp messages per service and language (EN/RU)
+    window.setPricingMessages = function(lang) {
+      const phone = '79998965379'; // number used in wa.me links
+      const selectedLang = lang && lang.startsWith('ru') ? 'ru' : 'en';
+      const messages = {
+        en: {
+          general: "Hi, I'm interested in learning more about your general English services",
+          business: "Hi, I'm interested in learning more about your business English services",
+          ielts: "Hi, I'm interested in learning more about your IELTS/SAT services"
+        },
+        ru: {
+          general: "Здравствуйте, я хотел бы узнать больше о ваших услугах по общему английскому",
+          business: "Здравствуйте, я хотел бы узнать больше о ваших услугах по деловому английскому",
+          ielts: "Здравствуйте, я хотел бы узнать больше о ваших услугах по подготовке к IELTS/SAT"
+        }
+      };
+
+      document.querySelectorAll('.pricing-quote').forEach(a => {
+        const service = a.dataset.service || 'general';
+        const text = (messages[selectedLang] && messages[selectedLang][service]) || messages.en.general;
+        const encoded = encodeURIComponent(text);
+        // Use api.whatsapp.com/send with phone and text query parameters — more reliable across devices/browsers
+        a.href = `https://api.whatsapp.com/send?phone=${phone}&text=${encoded}`;
+      });
+    };
+
+    // Initialize pricing links using current document language (or default to en)
+    try {
+      setPricingMessages(document.documentElement.lang || 'en');
+    } catch (e) {
+      // ignore if DOM not ready; applyLang will call the function after initialization
+    }
 
   </script>
 </body>
