@@ -360,14 +360,29 @@ footer a:hover {
       border-radius: 2px;
       transition: 0.3s;
     }
-    .hamburger.active span:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
+    /* Alternate active icon: turn into a rounded pill / dot instead of an X */
+    .hamburger.active span {
+      background: transparent;
+      transition: background 0.2s, transform 0.25s, opacity 0.2s;
+    }
+    .hamburger.active span:first-child {
+      background: var(--brand);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      transform: translateY(-6px);
+      margin: 0 auto;
     }
     .hamburger.active span:nth-child(2) {
-      opacity: 0;
+      display: none;
     }
     .hamburger.active span:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
+      background: var(--brand);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      transform: translateY(6px);
+      margin: 0 auto;
     }
 
     @media (max-width: 900px) {
@@ -904,12 +919,35 @@ footer a:hover {
       toggle.textContent = lang === 'en' ? 'RU' : 'EN';
       // Update pricing buttons when language changes
       if (typeof setPricingMessages === 'function') setPricingMessages(lang);
+      // Update color palette when language changes
+      if (typeof setPaletteForLang === 'function') setPaletteForLang(lang);
     }
     toggle.addEventListener('click', () => applyLang(currentLang === 'en' ? 'ru' : 'en'));
     applyLang('en');
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Palette switching: Option 2 (EN) = warm & illuminating; Option 1 (RU) = minimal contrast tweaks
+    window.setPaletteForLang = function(lang) {
+      const root = document.documentElement;
+      if (lang && lang.startsWith('ru')) {
+        // Option 1: keep look but slightly deeper brand and stronger accent
+        root.style.setProperty('--brand', '#243746');
+        root.style.setProperty('--brand-dark', '#4ECDC4');
+        root.style.setProperty('--accent', '#FF5A4D');
+        root.style.setProperty('--bg', '#F5F5F5');
+      } else {
+        // Option 2: warm & illuminating (EN)
+        root.style.setProperty('--brand', '#1F3346');
+        root.style.setProperty('--brand-dark', '#3AB0A6');
+        root.style.setProperty('--accent', '#FFB84D');
+        root.style.setProperty('--bg', '#FBFAF8');
+      }
+    };
+
+    // Initialize palette
+    try { setPaletteForLang(document.documentElement.lang || 'en'); } catch(e) {}
 
     // Business English variant toggles
     function setBizWhy(n) {
